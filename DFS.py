@@ -60,6 +60,28 @@ class DFS:
 					newList3.append(newNum3)
 					self.recursion(newList3, newPath3)
 
+					if(secondNum != 0 and firstNum % secondNum == 0):
+						newNum4 = firstNum / secondNum
+						newPath4 = currPath + "(" + str(firstNum) + " / " + str(secondNum) + ")"
+						if newNum4 == self.target:
+							self.allSolutions.append(newPath4)
+						newList4 = nums[:]
+						newList4.remove(firstNum)
+						newList4.remove(secondNum)
+						newList4.append(newNum4)
+						self.recursion(newList4, newPath4)
+
+					elif(firstNum !=0 and secondNum % firstNum == 0):
+						newNum4 = secondNum / firstNum
+						newPath4 = currPath + "(" + str(secondNum) + " / " + str(firstNum) + ")"
+						if newNum4 == self.target:
+							self.allSolutions.append(newPath4)
+						newList4 = nums[:]
+						newList4.remove(firstNum)
+						newList4.remove(secondNum)
+						newList4.append(newNum4)
+						self.recursion(newList4, newPath4)
+
 
 	def getSolutions(self):
 		for num in self.nums:
