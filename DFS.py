@@ -20,7 +20,7 @@ class DFS:
 
 
 	def recursion(self, nums, currPath):
-		if self.found and self.only_one:
+		if self.only_one and self.found:
 			return
 		if len(nums) == 1:
 			return
@@ -40,6 +40,8 @@ class DFS:
 					newList1.remove(secondNum)
 					newList1.append(newNum1)
 					self.recursion(newList1, newPath1)
+					if self.only_one and self.found:
+						return
 
 					if firstNum > secondNum:
 						newNum2 = firstNum - secondNum
@@ -55,6 +57,8 @@ class DFS:
 					newList2.remove(secondNum)
 					newList2.append(newNum2)
 					self.recursion(newList2, newPath2)
+					if self.only_one and self.found:
+						return
 
 					newNum3 = firstNum * secondNum
 					newPath3 = currPath + "(" + str(firstNum) + " x " + str(secondNum) + ")"
@@ -66,6 +70,8 @@ class DFS:
 					newList3.remove(secondNum)
 					newList3.append(newNum3)
 					self.recursion(newList3, newPath3)
+					if self.only_one and self.found:
+						return
 
 					if(secondNum != 0 and firstNum % secondNum == 0):
 						newNum4 = firstNum / secondNum
@@ -78,6 +84,8 @@ class DFS:
 						newList4.remove(secondNum)
 						newList4.append(newNum4)
 						self.recursion(newList4, newPath4)
+						if self.only_one and self.found:
+							return
 
 					elif(firstNum !=0 and secondNum % firstNum == 0):
 						newNum4 = secondNum / firstNum
@@ -90,6 +98,8 @@ class DFS:
 						newList4.remove(secondNum)
 						newList4.append(newNum4)
 						self.recursion(newList4, newPath4)
+						if self.only_one and self.found:
+							return
 
 
 	def get_solutions(self):
