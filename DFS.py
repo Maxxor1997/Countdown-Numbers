@@ -11,14 +11,6 @@ class DFS:
 		self.allSolutions = list()
 		self.found = False
 
-	#assume numbers are divisible
-	def divide(self, a, b):
-		if a > b:
-			return a/b
-		else:
-			return b/a
-
-
 	def recursion(self, nums, currPath):
 		if self.only_one and self.found:
 			return
