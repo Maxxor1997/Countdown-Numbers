@@ -7,7 +7,7 @@ import time
 
 def use_DFS():
 	nums = [1, 2, 3, 4, 5]
-	dfs = DFS(5, nums, 100, False)
+	dfs = DFS(5, nums, 1, False)
 	start = time.time()
 	all_solutions = dfs.get_solutions()
 	end = time.time()
