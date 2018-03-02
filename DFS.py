@@ -9,18 +9,6 @@ class DFS:
 		self.target = target
 		self.allSolutions = list()
 
-	def add(self, a, b):
-		return a+b
-
-	def subtract(self, a, b):
-		if a > b:
-			return a-b
-		else:
-			return b-a
-
-	def multiply(self, a, b):
-		return a*b
-
 	#assume numbers are divisible
 	def divide(self, a, b):
 		if a > b:
@@ -38,7 +26,7 @@ class DFS:
 					firstNum = nums[i]
 					secondNum = nums[j]
 
-					newNum1 = self.add(firstNum, secondNum)
+					newNum1 = firstNum + secondNum
 					newPath1 = currPath + "(" + str(firstNum) + " + " + str(secondNum) + ")"
 					if newNum1 == self.target:
 						self.allSolutions.append(newPath1)
@@ -48,8 +36,12 @@ class DFS:
 					newList1.append(newNum1)
 					self.recursion(newList1, newPath1)
 
-					newNum2 = self.subtract(firstNum, secondNum)
-					newPath2 = currPath + "(" + str(firstNum) + " - " + str(secondNum) + ")"
+					if firstNum > secondNum:
+						newNum2 = firstNum - secondNum
+						newPath2 = currPath + "(" + str(firstNum) + " - " + str(secondNum) + ")"
+					else:
+						newNum2 = secondNum - firstNum
+						newPath2 = currPath + "(" + str(secondNum) + " - " + str(firstNum) + ")"
 					if newNum2 == self.target:
 						self.allSolutions.append(newPath2)
 					newList2 = nums[:]
@@ -58,7 +50,7 @@ class DFS:
 					newList2.append(newNum2)
 					self.recursion(newList2, newPath2)
 
-					newNum3 = self.multiply(firstNum, secondNum)
+					newNum3 = firstNum * secondNum
 					newPath3 = currPath + "(" + str(firstNum) + " x " + str(secondNum) + ")"
 					if newNum3 == self.target:
 						self.allSolutions.append(newPath3)
