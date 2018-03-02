@@ -3,11 +3,13 @@
 #generalized countdown problem with the 4 standard operators
 class DFS:
 
-	def __init__(self, n, nums, target):
+	def __init__(self, n, nums, target, only_one):
 		self.n = n
 		self.nums = nums
 		self.target = target
+		self.only_one = only_one
 		self.allSolutions = list()
+		self.found = False
 
 	#assume numbers are divisible
 	def divide(self, a, b):
@@ -18,6 +20,8 @@ class DFS:
 
 
 	def recursion(self, nums, currPath):
+		if self.found and self.only_one:
+			return
 		if len(nums) == 1:
 			return
 		else:
@@ -29,6 +33,7 @@ class DFS:
 					newNum1 = firstNum + secondNum
 					newPath1 = currPath + "(" + str(firstNum) + " + " + str(secondNum) + ")"
 					if newNum1 == self.target:
+						self.found = True
 						self.allSolutions.append(newPath1)
 					newList1 = nums[:]
 					newList1.remove(firstNum)
@@ -43,6 +48,7 @@ class DFS:
 						newNum2 = secondNum - firstNum
 						newPath2 = currPath + "(" + str(secondNum) + " - " + str(firstNum) + ")"
 					if newNum2 == self.target:
+						self.found = True
 						self.allSolutions.append(newPath2)
 					newList2 = nums[:]
 					newList2.remove(firstNum)
@@ -53,6 +59,7 @@ class DFS:
 					newNum3 = firstNum * secondNum
 					newPath3 = currPath + "(" + str(firstNum) + " x " + str(secondNum) + ")"
 					if newNum3 == self.target:
+						self.found = True
 						self.allSolutions.append(newPath3)
 					newList3 = nums[:]
 					newList3.remove(firstNum)
@@ -64,6 +71,7 @@ class DFS:
 						newNum4 = firstNum / secondNum
 						newPath4 = currPath + "(" + str(firstNum) + " / " + str(secondNum) + ")"
 						if newNum4 == self.target:
+							self.found = True
 							self.allSolutions.append(newPath4)
 						newList4 = nums[:]
 						newList4.remove(firstNum)
@@ -75,6 +83,7 @@ class DFS:
 						newNum4 = secondNum / firstNum
 						newPath4 = currPath + "(" + str(secondNum) + " / " + str(firstNum) + ")"
 						if newNum4 == self.target:
+							self.found = True
 							self.allSolutions.append(newPath4)
 						newList4 = nums[:]
 						newList4.remove(firstNum)
@@ -83,7 +92,7 @@ class DFS:
 						self.recursion(newList4, newPath4)
 
 
-	def getSolutions(self):
+	def get_solutions(self):
 		for num in self.nums:
 			if num == self.target:
 				self.allSolutions.append(str(num))
