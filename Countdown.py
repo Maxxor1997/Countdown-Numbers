@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # for i in range (0, len(targets1)):
     # 	if targets1[i] != targets2[i]:
     # 		print ("discrepancy" + str(targets1[i]))
-    k = 1
+    k = 8
     analysis = Analysis()
     start = time.time()
     all_solutions = analysis.get_analysis(k)
@@ -55,3 +55,4 @@ if __name__ == "__main__":
     	print(str(key) + ": " + str(value) + "%")
     print("total time: " + str(end - start))
     print("average time: " + str(average))
+    analysis.visualize(all_solutions, k)

@@ -6,6 +6,8 @@ from DFS_hash import DFS_hash
 import time
 import collections
 import operator
+import matplotlib.pyplot as plt
+from math import log
 
 class Analysis:
 
@@ -27,6 +29,14 @@ class Analysis:
 	def sort_by_value(self, dict):
 		ordered_solutions = sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
 		return ordered_solutions
+
+	def visualize(self, ordered_solutions, k):
+		lst = [(elem1, elem2) for elem1, elem2 in ordered_solutions]
+		plt.scatter(*zip(*lst))
+		plt.xlabel("Target Number")
+		plt.ylabel("Probability of Having a Solution")
+		plt.title("k = " + str(k))
+		plt.show()
 
 	def get_analysis(self, k):
 		all_solutions = dict()
