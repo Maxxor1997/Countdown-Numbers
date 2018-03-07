@@ -1,7 +1,9 @@
 #file -- DFS_marked.py --
 
 import random
+
 #generalized countdown problem with the 4 standard operators
+#marks all solutions that are reached, uses hash table for optimization
 class DFS_hash:
 
 	def __init__(self, n, nums, k):

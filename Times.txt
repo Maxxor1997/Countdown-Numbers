@@ -1,0 +1,23 @@
+k = 5
+total time: 1.68489289284
+average time: 0.000539165725708
+
+k = 6
+total time: 7.26219201088
+average time: 0.000933923869712
+
+k = 7
+total time: 18.3099229336
+average time: 0.00108942243908
+
+k = 8
+total time: 51.9187979698
+average time: 0.0015844359732
+
+k = 9
+total time: 120.379094839
+average time: 0.0020386305414
+
+k = 10
+total time: 252.008508205
+average time: 0.00252008508205

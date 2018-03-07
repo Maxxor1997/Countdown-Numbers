@@ -4,6 +4,7 @@ from DFS import DFS
 from DFS_hash import DFS_hash
 import time
 import collections
+import operator
 
 class Analysis:
 
@@ -13,13 +14,17 @@ class Analysis:
 	def get_rand_nums(self, n, k):
 		return
 
-	def format_all_solutions(self, all_solutions):
-		total = 0.0
+	def format_all_solutions(self, all_solutions, k, n):
 		for sol in all_solutions:
-			total = total + all_solutions[sol]
-		for sol in all_solutions:
-			all_solutions[sol] = 100.0 * all_solutions[sol] / total 
-		ordered_solutions = collections.OrderedDict(sorted(all_solutions.items()))
+			all_solutions[sol] = 100.0 * all_solutions[sol] / (k**n)
+		return all_solutions
+
+	def sort_by_key(self, dict):
+		ordered_solutions = sorted(dict.items(), key=operator.itemgetter(0))
+		return ordered_solutions
+
+	def sort_by_value(self, dict):
+		ordered_solutions = sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
 		return ordered_solutions
 
 	def get_analysis(self, k):
@@ -37,7 +42,7 @@ class Analysis:
 									all_solutions[sol] = 1
 								else:
 									all_solutions[sol] = all_solutions[sol] + 1
-		return self.format_all_solutions(all_solutions)
+		return self.sort_by_value(self.format_all_solutions(all_solutions, k, 5))
 
 
 

@@ -1,6 +1,7 @@
 #file -- DFS_marked.py --
 
 #generalized countdown problem with the 4 standard operators
+#marks all solutions that are reached
 class DFS_marked:
 
 	def __init__(self, n, nums):
