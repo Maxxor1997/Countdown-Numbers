@@ -1,6 +1,7 @@
 #file -- Analysis.py --
 
 from DFS import DFS
+from DFS_marked import DFS_marked
 from DFS_hash import DFS_hash
 import time
 import collections

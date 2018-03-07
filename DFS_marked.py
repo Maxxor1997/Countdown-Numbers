@@ -4,8 +4,9 @@
 #marks all solutions that are reached
 class DFS_marked:
 
-	def __init__(self, n, nums):
+	def __init__(self, n, nums, k):
 		self.n = n
+		self.k = k
 		self.nums = nums
 		self.all_targets_reachable = set()
 
