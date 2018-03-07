@@ -1,5 +1,3 @@
-\maketitle
-
 # Motivation and Goal
 
 Countdown is a British game show that first aired in 1982. The game is
