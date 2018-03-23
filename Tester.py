@@ -22,18 +22,27 @@ class Tester:
 			product = product * num
 		return product
 
-	def brute_force_trials(self, trials):
+	def brute_force_trials(self, trials, timeout):
 		start = time.time()
+		solved = 0
+		off = 0
 		for i in range(trials):
 			nums = self.gen_rand_nums(self.n, self.k)
 			print(nums)
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
 			print("Target: " + str(target))
-			solver = Solver(self.n, target, nums)
+			solver = Solver(self.n, target, nums, timeout)
 			(closest, solution) = solver.brute_force()
+			if (closest == target):
+				solved = solved + 1
+			else:
+				off = off + abs(closest - target)
 			print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
 			print(solution)
 		end = time.time()
 		average = (end - start) / trials
+		print("Percentage Solved: " + str(100 * solved / trials) + "%")
+		print("Average Error: " + str(off/trials))
 		print("Total Time: " + str(end - start))
 		print("Average Time: " + str(average))
+

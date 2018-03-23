@@ -1,11 +1,13 @@
 import random
+import time
 
 class Solver:
 
-	def __init__(self, n, target, nums):
+	def __init__(self, n, target, nums, timeout):
 		self.n = n
 		self.nums = nums
 		self.target = target
+		self.timeout = timeout
 		self.hashes = dict()
 		self.searched = set()
 
@@ -20,6 +22,7 @@ class Solver:
 		return sum
 
 	def brute_force(self):
+		self.start = time.time()
 		self.closest = self.nums[0]
 		self.solution = ""
 		self.pre_process()
@@ -48,6 +51,9 @@ class Solver:
 		if self.closest == self.target:
 			return
 
+		if time.time()-self.start >= self.timeout:
+			return
+
 		if len(nums) == 1:
 			return
 
@@ -74,6 +80,9 @@ class Solver:
 				self.recursion(newList1, newPath1)
 
 				if self.closest == self.target:
+					return
+
+				if time.time()-self.start >= self.timeout:
 					return
 
 				if (firstNum != secondNum):
@@ -105,6 +114,9 @@ class Solver:
 				if self.closest == self.target:
 					return
 
+				if time.time()-self.start >= self.timeout:
+					return
+
 				if (firstNum != 1 and secondNum != 1):
 					newNum3 = firstNum * secondNum
 					newList3 = nums[:]
@@ -118,6 +130,9 @@ class Solver:
 					self.recursion(newList3, newPath3)
 
 				if self.closest == self.target:
+					return
+
+				if time.time()-self.start >= self.timeout:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -136,6 +151,9 @@ class Solver:
 				if self.closest == self.target:
 					return
 
+				if time.time()-self.start >= self.timeout:
+					return
+
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
 					newNum4 = secondNum / firstNum
 					if newNum4 != secondNum:
@@ -150,4 +168,7 @@ class Solver:
 						self.recursion(newList4, newPath4)
 
 				if self.closest == self.target:
+					return
+					
+				if time.time()-self.start >= self.timeout:
 					return
