@@ -50,9 +50,9 @@ if __name__ == "__main__":
     # for i in range (0, len(targets1)):
     # 	if targets1[i] != targets2[i]:
     # 		print ("discrepancy" + str(targets1[i]))
-    k = 15
+    k = 25
     n = 10
-    #analysis = Analysis()
+    analysis = Analysis()
     # start = time.time()
     # all_solutions = analysis.get_analysis(k)
     # end = time.time()
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     # start = time.time()
     # all_solutions = analysis.get_analysis_1(k)
     # end = time.time()
-    # average = (end - start) / (k**5)
+    # average = (end - start) / (k**n)
     # print("k = " + str(k))
-    # for (key, value) in all_solutions[0:100]:
+    # for (key, value) in all_solutions:
     # 	print(str(key) + ": " + str(value) + "%")
     # print("total time: " + str(end - start))
     # print("average time: " + str(average))
