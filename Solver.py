@@ -9,6 +9,8 @@ class Solver:
 		self.hashes = dict()
 		self.searched = set()
 
+		self.diff = float("inf") #for debugging
+
 	def get_hash(self, nums):
 		sum = 0
 		for num in nums:
@@ -22,7 +24,7 @@ class Solver:
 		self.solution = ""
 		self.pre_process()
 		self.recursion(self.nums, self.solution)
-		return self.solution
+		return (self.closest, self.solution)
 
 	def heuristic_search(self):
 		self.closest = self.nums[0]
@@ -37,6 +39,11 @@ class Solver:
 						self.solution = str(num)
 
 	def recursion(self, nums, currPath):
+
+		#for debugging
+		if abs(self.closest - self.target) < self.diff:
+			self.diff = abs(self.closest - self.target)
+			print(self.diff)
 
 		if self.closest == self.target:
 			return

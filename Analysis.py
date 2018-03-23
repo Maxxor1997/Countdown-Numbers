@@ -59,11 +59,11 @@ class Analysis:
 
 	def get_analysis(self, k):
 		all_solutions = dict()
-		for a in range(0, k):
-			for b in range(0, k):
-				for c in range(0, k):
-					for d in range (0, k):
-						for e in range (0, k):
+		for a in range(1, k+1):
+			for b in range(1, k+1):
+				for c in range(1, k+1):
+					for d in range (1, k+1):
+						for e in range (1, k+1):
 							nums = [a, b, c, d, e]
 							dfs_hash = DFS_hash(5, nums, k)
 							solutions = dfs_hash.get_reachable_targets()
@@ -76,11 +76,11 @@ class Analysis:
 
 	def get_analysis_1(self, k):
 		all_solutions = dict()
-		for a in range(0, k):
-			for b in range(a, k):
-				for c in range(b, k):
-					for d in range (c, k):
-						for e in range (d, k):
+		for a in range(1, k+1):
+			for b in range(a, k+1):
+				for c in range(b, k+1):
+					for d in range (c, k+1):
+						for e in range (d, k+1):
 							nums = [a, b, c, d, e]
 							dfs_hash = DFS_hash(5, nums, k)
 							solutions = dfs_hash.get_reachable_targets()

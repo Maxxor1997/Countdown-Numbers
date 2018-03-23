@@ -5,6 +5,7 @@ from DFS_marked import DFS_marked
 from DFS_hash import DFS_hash
 from Analysis import Analysis
 from Solver import Solver
+from Tester import Tester
 import time
 
 def use_DFS():
@@ -49,7 +50,8 @@ if __name__ == "__main__":
     # for i in range (0, len(targets1)):
     # 	if targets1[i] != targets2[i]:
     # 		print ("discrepancy" + str(targets1[i]))
-    #k = 15
+    k = 15
+    n = 10
     #analysis = Analysis()
     # start = time.time()
     # all_solutions = analysis.get_analysis(k)
@@ -71,9 +73,17 @@ if __name__ == "__main__":
     # 	print(str(key) + ": " + str(value) + "%")
     # print("total time: " + str(end - start))
     # print("average time: " + str(average))
+    # analysis.visualize(all_solutions, k)
     
-    nums = [1,2,2,2,2]
-    solver = Solver(5, 21, nums)
-    solution = solver.brute_force()
-    print(solution)
+    # nums = [1,2,2,2,2]
+    # solver = Solver(5, 21, nums)
+    # start = time.time()
+    # (closest, solution) = solver.brute_force()
+    # end = time.time()
+    # print("Closest: " + str(closest))
+    # print(solution)
+    # print("time: " + str(end - start) + " seconds")
+
+    tester = Tester(n, k)
+    tester.brute_force_trials(10)
 
