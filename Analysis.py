@@ -7,6 +7,7 @@ import time
 import collections
 import operator
 import matplotlib.pyplot as plt
+import math
 from math import log
 
 class Analysis:
@@ -38,6 +39,24 @@ class Analysis:
 		plt.title("k = " + str(k))
 		plt.show()
 
+	def get_scaling_factor(self, nums):
+		scaling = 120 #5!
+		duplicates = list()
+		curr_num = nums[0]
+		count = 0
+		for num in nums:
+			if num == curr_num:
+				count = count + 1
+			else:
+				duplicates.append(count)
+				curr_num = num
+				count = 1
+		duplicates.append(count)
+		for dup in duplicates:
+			scaling = scaling / math.factorial(dup)
+		return scaling
+
+
 	def get_analysis(self, k):
 		all_solutions = dict()
 		for a in range(0, k):
@@ -55,6 +74,23 @@ class Analysis:
 									all_solutions[sol] = all_solutions[sol] + 1
 		return self.sort_by_value(self.format_all_solutions(all_solutions, k, 5))
 
+	def get_analysis_1(self, k):
+		all_solutions = dict()
+		for a in range(0, k):
+			for b in range(a, k):
+				for c in range(b, k):
+					for d in range (c, k):
+						for e in range (d, k):
+							nums = [a, b, c, d, e]
+							dfs_hash = DFS_hash(5, nums, k)
+							solutions = dfs_hash.get_reachable_targets()
+							scaling_factor = self.get_scaling_factor(nums)
+							for sol in solutions:
+								if not sol in all_solutions:
+									all_solutions[sol] = scaling_factor
+								else:
+									all_solutions[sol] = all_solutions[sol] + scaling_factor
+		return self.sort_by_value(self.format_all_solutions(all_solutions, k, 5))
 
 
 

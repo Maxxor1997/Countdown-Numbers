@@ -39,25 +39,33 @@ class DFS:
 					if firstNum != secondNum:
 						if firstNum > secondNum:
 							newNum2 = firstNum - secondNum
-							if newNum2 == secondNum:
-								return
-							newPath2 = currPath + "(" + str(firstNum) + " - " + str(secondNum) + ")"
+							if newNum2 != secondNum:
+								newPath2 = currPath + "(" + str(firstNum) + " - " + str(secondNum) + ")"
+								if newNum2 == self.target:
+									self.found = True
+									self.allSolutions.append(newPath2)
+								newList2 = nums[:]
+								newList2.remove(firstNum)
+								newList2.remove(secondNum)
+								newList2.append(newNum2)
+								self.recursion(newList2, newPath2)
+								if self.only_one and self.found:
+									return
 						else:
 							newNum2 = secondNum - firstNum
-							if newNum2 == firstNum:
-								return
-							newPath2 = currPath + "(" + str(secondNum) + " - " + str(firstNum) + ")"
+							if newNum2 != firstNum:
+								newPath2 = currPath + "(" + str(secondNum) + " - " + str(firstNum) + ")"
+								if newNum2 == self.target:
+									self.found = True
+									self.allSolutions.append(newPath2)
+								newList2 = nums[:]
+								newList2.remove(firstNum)
+								newList2.remove(secondNum)
+								newList2.append(newNum2)
+								self.recursion(newList2, newPath2)
+								if self.only_one and self.found:
+									return
 
-						if newNum2 == self.target:
-							self.found = True
-							self.allSolutions.append(newPath2)
-						newList2 = nums[:]
-						newList2.remove(firstNum)
-						newList2.remove(secondNum)
-						newList2.append(newNum2)
-						self.recursion(newList2, newPath2)
-						if self.only_one and self.found:
-							return
 
 					if firstNum != 1 and secondNum != 1:
 						newNum3 = firstNum * secondNum
@@ -75,35 +83,33 @@ class DFS:
 
 					if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
 						newNum4 = firstNum / secondNum
-						if newNum4 == secondNum:
-							return
-						newPath4 = currPath + "(" + str(firstNum) + " / " + str(secondNum) + ")"
-						if newNum4 == self.target:
-							self.found = True
-							self.allSolutions.append(newPath4)
-						newList4 = nums[:]
-						newList4.remove(firstNum)
-						newList4.remove(secondNum)
-						newList4.append(newNum4)
-						self.recursion(newList4, newPath4)
-						if self.only_one and self.found:
-							return
+						if newNum4 != secondNum:
+							newPath4 = currPath + "(" + str(firstNum) + " / " + str(secondNum) + ")"
+							if newNum4 == self.target:
+								self.found = True
+								self.allSolutions.append(newPath4)
+							newList4 = nums[:]
+							newList4.remove(firstNum)
+							newList4.remove(secondNum)
+							newList4.append(newNum4)
+							self.recursion(newList4, newPath4)
+							if self.only_one and self.found:
+								return
 
 					elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
 						newNum4 = secondNum / firstNum
-						if newNum4 == secondNum:
-							return
-						newPath4 = currPath + "(" + str(secondNum) + " / " + str(firstNum) + ")"
-						if newNum4 == self.target:
-							self.found = True
-							self.allSolutions.append(newPath4)
-						newList4 = nums[:]
-						newList4.remove(firstNum)
-						newList4.remove(secondNum)
-						newList4.append(newNum4)
-						self.recursion(newList4, newPath4)
-						if self.only_one and self.found:
-							return
+						if newNum4 != secondNum:
+							newPath4 = currPath + "(" + str(secondNum) + " / " + str(firstNum) + ")"
+							if newNum4 == self.target:
+								self.found = True
+								self.allSolutions.append(newPath4)
+							newList4 = nums[:]
+							newList4.remove(firstNum)
+							newList4.remove(secondNum)
+							newList4.append(newNum4)
+							self.recursion(newList4, newPath4)
+							if self.only_one and self.found:
+								return
 
 
 	def get_solutions(self):

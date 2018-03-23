@@ -33,6 +33,7 @@ class DFS_hash:
 		else:
 			self.searched.add(hash)
 
+
 		for i in range(0, len(nums)):
 			for j in range(i+1, len(nums)):
 				firstNum = nums[i]
@@ -49,18 +50,21 @@ class DFS_hash:
 				if (firstNum != secondNum):
 					if firstNum > secondNum:
 						newNum2 = firstNum - secondNum
-						if newNum2 == secondNum:
-							return
+						if newNum2 != secondNum:
+							newList2 = nums[:]
+							newList2.remove(firstNum)
+							newList2.remove(secondNum)
+							newList2.append(newNum2)
+							self.recursion(newList2)
 					else:
 						newNum2 = secondNum - firstNum
-						if newNum2 == firstNum:
-							return
-					self.all_targets_reachable.add(newNum2)
-					newList2 = nums[:]
-					newList2.remove(firstNum)
-					newList2.remove(secondNum)
-					newList2.append(newNum2)
-					self.recursion(newList2)
+						if newNum2 != firstNum:
+							self.all_targets_reachable.add(newNum2)
+							newList2 = nums[:]
+							newList2.remove(firstNum)
+							newList2.remove(secondNum)
+							newList2.append(newNum2)
+							self.recursion(newList2)
 
 				if (firstNum != 1 and secondNum != 1):
 					newNum3 = firstNum * secondNum
@@ -73,25 +77,23 @@ class DFS_hash:
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
 					newNum4 = firstNum / secondNum
-					if newNum4 == secondNum:
-						return
-					self.all_targets_reachable.add(newNum4)
-					newList4 = nums[:]
-					newList4.remove(firstNum)
-					newList4.remove(secondNum)
-					newList4.append(newNum4)
-					self.recursion(newList4)
+					if newNum4 != secondNum:
+						self.all_targets_reachable.add(newNum4)
+						newList4 = nums[:]
+						newList4.remove(firstNum)
+						newList4.remove(secondNum)
+						newList4.append(newNum4)
+						self.recursion(newList4)
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
 					newNum4 = secondNum / firstNum
-					if newNum4 == secondNum:
-						return
-					self.all_targets_reachable.add(newNum4)
-					newList4 = nums[:]
-					newList4.remove(firstNum)
-					newList4.remove(secondNum)
-					newList4.append(newNum4)
-					self.recursion(newList4)
+					if newNum4 != secondNum:
+						self.all_targets_reachable.add(newNum4)
+						newList4 = nums[:]
+						newList4.remove(firstNum)
+						newList4.remove(secondNum)
+						newList4.append(newNum4)
+						self.recursion(newList4)
 
 
 	def get_reachable_targets(self):
