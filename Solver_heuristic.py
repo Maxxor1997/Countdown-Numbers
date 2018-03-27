@@ -3,7 +3,7 @@ import time
 
 class Solver_heuristic:
 
-	def __init__(self, n, target, nums, timeout):
+	def __init__(self, n, k, target, nums, timeout, heuristic_range):
 		self.n = n
 		self.nums = nums
 		self.target = target
@@ -12,6 +12,33 @@ class Solver_heuristic:
 		self.searched = set()
 
 		self.diff = float("inf") #for debugging
+
+		#initialize dict structure
+		most_likely = set()
+		file_name = "results_n" + str(int(n/2)) + "_k" + str(k) + ".txt"
+		input_file = open(file_name)
+		text = input_file.readlines()[1:heuristic_range + 1]
+		for line in text:
+			index = line.index(":")
+			num = line[:index]
+			most_likely.add(int(num))
+
+		self.heuristic_targets = dict()
+		for num in most_likely:
+			self.heuristic_targets[self.target + num] = num
+			self.heuristic_targets[self.target * num] = num
+			if (num >= self.target):
+				self.heuristic_targets[num - self.target] = num
+			else:
+				self.heuristic_targets[self.target - num] = num
+			if (self.target != 0 and num % self.target == 0):
+				self.heuristic_targets[num / self.target] = num
+			elif (num != 0 and self.target % num == 0):
+				self.heuristic_targets[self.target / num] = num
+
+		for num in self.heuristic_targets:
+			print(str(num) + " " + str(self.heuristic_targets[num]))
+
 
 	def get_hash(self, nums):
 		sum = 0
@@ -22,22 +49,28 @@ class Solver_heuristic:
 		return sum
 
 	def heuristic_search(self):
+		half = int(n/2)
+		first_half = self.nums[:half+1]
+		second_half = self.nums[half+1:]
 		self.start = time.time()
 		self.closest = self.nums[0]
 		self.solution = ""
+		self.curr_target = self.heuristic_targets.keys()[0]
 		self.pre_process()
-		self.recursion(self.nums, self.solution)
+
+		self.recursion(self.nums, self.solution, self.heuristic_targets)
 		return (self.closest, self.solution)
 
+
 	def pre_process(self):
-		self.closest = self.nums[0]
 		for num in self.nums:
 			if abs(num - self.target) < abs(self.closest - self.target):
 					self.closest = num
 					if (self.closest == self.target):
 						self.solution = str(num)
 
-	def recursion(self, nums, currPath):
+
+	def recursion(self, nums, currPath, heuristic_targets):
 
 		#for debugging
 		if abs(self.closest - self.target) < self.diff:

@@ -13,6 +13,7 @@ class Solver:
 
 		self.diff = float("inf") #for debugging
 
+
 	def get_hash(self, nums):
 		sum = 0
 		for num in nums:
