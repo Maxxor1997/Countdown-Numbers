@@ -1,0 +1,68 @@
+Timeout = 0.1s
+Starting Brute Force Trials
+Percentage Solved: 6.5%
+Average Error: 901.97
+Total Time: 96.35381197929382
+Average Time: 0.09635381197929382
+
+offset 0
+Starting Heuristic Trials
+Percentage Solved: 11.7%
+Average Error: 5069.863
+Average Found Size: 158.61
+Total Time: 101.09115099906921
+Average Time: 0.10109115099906921
+
+offset 1
+Starting Heuristic Trials
+Percentage Solved: 12.9%
+Average Error: 7861.734
+Average Found Size: 87.672
+Total Time: 93.09854221343994
+Average Time: 0.09309854221343994
+
+Timeout = 0.2s
+Starting Brute Force Trials
+Percentage Solved: 9.2%
+Average Error: 445.385
+Total Time: 189.23766708374023
+Average Time: 0.18923766708374024
+
+offset 0
+Starting Heuristic Trials
+Percentage Solved: 17.0%
+Average Error: 3909.996
+Average Found Size: 177.455
+Total Time: 200.7900869846344
+Average Time: 0.2007900869846344
+
+offset 1
+Starting Heuristic Trials
+Percentage Solved: 15.5%
+Average Error: 7142.101
+Average Found Size: 88.406
+Total Time: 183.38258695602417
+Average Time: 0.18338258695602416
+
+Timeout = 0.3
+Starting Brute Force Trials
+Percentage Solved: 12.2%
+Average Error: 139.774
+Total Time: 278.12194895744324
+Average Time: 0.27812194895744324
+
+offset 0
+Starting Heuristic Trials
+Percentage Solved: 24.0%
+Average Error: 3660.845
+Average Found Size: 184.008
+Total Time: 296.60268998146057
+Average Time: 0.29660268998146055
+
+offset 1
+Starting Heuristic Trials
+Percentage Solved: 19.8%
+Average Error: 5358.722
+Average Found Size: 86.895
+Total Time: 273.05365777015686
+Average Time: 0.2730536577701569

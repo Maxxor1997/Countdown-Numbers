@@ -65,15 +65,17 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     k = 25
     n = 10
-    
+    t = 0.1
+    trials = 100
 
     tester = Tester(n, k)
-    #tester.brute_force_trials(1000, 1, False)
-    #print("")
+    print("Timeout = " + str(t) + "s")
+    tester.brute_force_trials(trials, t, False)
+    print("")
     print("offset 0")
-    tester.heuristic_trials(1000, 0.1, 0, False)
+    tester.heuristic_trials(trials, t, 0, False)
     print("")
     print("offset 1")
-    tester.heuristic_trials(1000, 0.1, 1, False)
+    tester.heuristic_trials(trials, t, 1, False)
 
 

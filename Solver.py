@@ -4,6 +4,7 @@ import time
 class Solver:
 
 	def __init__(self, n, target, nums, timeout, debug):
+		self.start = time.clock()
 		self.n = n
 		self.nums = nums
 		self.target = target
@@ -24,11 +25,10 @@ class Solver:
 		return sum
 
 	def brute_force(self):
-		self.start = time.time()
 		self.closest = self.nums[0]
 		self.solution = ""
 		self.pre_process()
-		self.recursion(self.nums, self.solution)
+		self.recursion(self.nums, self.solution, self.start + self.timeout)
 		return (self.closest, self.solution)
 
 	def heuristic_search(self):
@@ -43,7 +43,8 @@ class Solver:
 					if (self.closest == self.target):
 						self.solution = str(num)
 
-	def recursion(self, nums, currPath):
+
+	def recursion(self, nums, currPath, timeout):
 
 		#for debugging
 		if self.debug:
@@ -54,7 +55,7 @@ class Solver:
 		if self.closest == self.target:
 			return
 
-		if time.time()-self.start >= self.timeout:
+		if time.clock() >= timeout:
 			return
 
 		if len(nums) == 1:
@@ -80,12 +81,12 @@ class Solver:
 				newList1.remove(firstNum)
 				newList1.remove(secondNum)
 				newList1.append(newNum1)
-				self.recursion(newList1, newPath1)
+				self.recursion(newList1, newPath1, timeout)
 
 				if self.closest == self.target:
 					return
 
-				if time.time()-self.start >= self.timeout:
+				if time.clock() >= timeout:
 					return
 
 				if (firstNum != secondNum):
@@ -100,7 +101,7 @@ class Solver:
 							if abs(newNum2 - self.target) < abs(self.closest - self.target):
 								self.closest = newNum2
 								self.solution = newPath2
-							self.recursion(newList2, newPath2)
+							self.recursion(newList2, newPath2, timeout)
 					else:
 						newNum2 = secondNum - firstNum
 						if newNum2 != firstNum:
@@ -112,12 +113,12 @@ class Solver:
 							if abs(newNum2 - self.target) < abs(self.closest - self.target):
 								self.closest = newNum2
 								self.solution = newPath2
-							self.recursion(newList2, newPath2)
+							self.recursion(newList2, newPath2, timeout)
 
 				if self.closest == self.target:
 					return
 
-				if time.time()-self.start >= self.timeout:
+				if time.clock() >= timeout:
 					return
 
 				if (firstNum != 1 and secondNum != 1):
@@ -130,12 +131,12 @@ class Solver:
 					if abs(newNum3 - self.target) < abs(self.closest - self.target):
 						self.closest = newNum3
 						self.solution = newPath3
-					self.recursion(newList3, newPath3)
+					self.recursion(newList3, newPath3, timeout)
 
 				if self.closest == self.target:
 					return
 
-				if time.time()-self.start >= self.timeout:
+				if time.clock() >= timeout:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -149,12 +150,12 @@ class Solver:
 						if abs(newNum4 - self.target) < abs(self.closest - self.target):
 							self.closest = newNum4
 							self.solution = newPath4
-						self.recursion(newList4, newPath4)
+						self.recursion(newList4, newPath4, timeout)
 
 				if self.closest == self.target:
 					return
 
-				if time.time()-self.start >= self.timeout:
+				if time.clock() >= timeout:
 					return
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
@@ -168,10 +169,10 @@ class Solver:
 						if abs(newNum4 - self.target) < abs(self.closest - self.target):
 							self.closest = newNum4
 							self.solution = newPath4
-						self.recursion(newList4, newPath4)
+						self.recursion(newList4, newPath4, timeout)
 
 				if self.closest == self.target:
 					return
 					
-				if time.time()-self.start >= self.timeout:
+				if time.clock() >= timeout:
 					return

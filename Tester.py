@@ -24,7 +24,7 @@ class Tester:
 		return product
 
 	def brute_force_trials(self, trials, timeout, debug):
-		start = time.time()
+		start = time.clock()
 		solved = 0
 		off = 0
 		print("Starting Brute Force Trials")
@@ -44,7 +44,7 @@ class Tester:
 			if debug:
 				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
 				print(solution)
-		end = time.time()
+		end = time.clock()
 		average = (end - start) / trials
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
 		print("Average Error: " + str(off/trials))
@@ -52,7 +52,7 @@ class Tester:
 		print("Average Time: " + str(average))
 
 	def heuristic_trials(self, trials, timeout, offset, debug):
-		start = time.time()
+		start = time.clock()
 		solved = 0
 		off = 0
 		found_total = 0
@@ -75,7 +75,7 @@ class Tester:
 				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
 				print(solution)
 				print("")
-		end = time.time()
+		end = time.clock()
 		average = (end - start) / trials
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
 		print("Average Error: " + str(off/trials))
@@ -84,7 +84,7 @@ class Tester:
 		print("Average Time: " + str(average))
 
 	def heuristic_trials_test(self, trials, timeout):
-		start = time.time()
+		start = time.clock()
 		solved = 0
 		off = 0
 		print("Starting Heuristic Trials Test")

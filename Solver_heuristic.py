@@ -4,14 +4,13 @@ import time
 class Solver_heuristic:
 
 	def __init__(self, n, first_half, k, target, nums, timeout, heuristic_range, time_ratio, debug):
-		self.start = time.time()
 		self.n = n
 		self.nums = nums
 		self.target = target
 		self.timeout = timeout
 		self.time_ratio = time_ratio
 		self.first_half = first_half
-		self.start = time.time()
+		self.start = time.clock()
 		self.debug = debug
 		self.hashes = dict()
 		self.searched = set()
@@ -122,7 +121,7 @@ class Solver_heuristic:
 				self.found[num] = str(num)
 
 	def recursion_2(self, nums, currPath, timeout):
-		if time.time() >= timeout:
+		if time.clock() >= timeout:
 			return
 
 		if len(nums) == 1:
@@ -149,7 +148,7 @@ class Solver_heuristic:
 				newList1.append(newNum1)
 				self.recursion_2(newList1, newPath1, timeout)
 
-				if time.time()>= timeout:
+				if time.clock()>= timeout:
 					return
 
 				if (firstNum != secondNum):
@@ -176,7 +175,7 @@ class Solver_heuristic:
 								self.found[newNum2] = newPath2
 							self.recursion_2(newList2, newPath2, timeout)
 
-				if time.time() >= timeout:
+				if time.clock() >= timeout:
 					return
 
 				if (firstNum != 1 and secondNum != 1):
@@ -190,7 +189,7 @@ class Solver_heuristic:
 						self.found[newNum3] = newPath3
 					self.recursion_2(newList3, newPath3, timeout)
 
-				if time.time()>= timeout:
+				if time.clock()>= timeout:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -206,7 +205,7 @@ class Solver_heuristic:
 						self.recursion_2(newList4, newPath4, timeout)
 
 
-				if time.time() >= timeout:
+				if time.clock() >= timeout:
 					return
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
@@ -221,14 +220,14 @@ class Solver_heuristic:
 							self.found[newNum4] = newPath4
 						self.recursion_2(newList4, newPath4, timeout)
 					
-				if time.time() >= timeout:
+				if time.clock() >= timeout:
 					return
 
 
 
 	def recursion(self, nums, currPath, timeout):
 
-		if time.time() >= timeout:
+		if time.clock() >= timeout:
 			return
 
 		if len(nums) == 1:
@@ -257,7 +256,7 @@ class Solver_heuristic:
 				newList1.append(newNum1)
 				self.recursion(newList1, newPath1, timeout)
 
-				if time.time()>= timeout:
+				if time.clock()>= timeout:
 					return
 
 				if (firstNum != secondNum):
@@ -288,7 +287,7 @@ class Solver_heuristic:
 									self.heuristic_targets[tar] = (newNum2, newPath2, likely)
 							self.recursion(newList2, newPath2, timeout)
 
-				if time.time()>= timeout:
+				if time.clock()>= timeout:
 					return
 
 				if (firstNum != 1 and secondNum != 1):
@@ -304,7 +303,7 @@ class Solver_heuristic:
 							self.heuristic_targets[tar] = (newNum3, newPath3, likely)
 					self.recursion(newList3, newPath3, timeout)
 
-				if time.time() >= timeout:
+				if time.clock() >= timeout:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -322,7 +321,7 @@ class Solver_heuristic:
 						self.recursion(newList4, newPath4, timeout)
 
 
-				if time.time()>= timeout:
+				if time.clock()>= timeout:
 					return
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
@@ -340,5 +339,5 @@ class Solver_heuristic:
 						self.recursion(newList4, newPath4, timeout)
 
 					
-				if time.time()>= timeout:
+				if time.clock()>= timeout:
 					return
