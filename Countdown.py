@@ -70,12 +70,13 @@ if __name__ == "__main__":
 
     tester = Tester(n, k)
     print("Timeout = " + str(t) + "s")
-    tester.brute_force_trials(trials, t, False)
+    test_cases = tester.gen_test_nums(n, k, trials)
+    tester.brute_force_trials(trials, t, test_cases, False)
     print("")
     print("offset 0")
-    tester.heuristic_trials(trials, t, 0, False)
+    tester.heuristic_trials(trials, t, test_cases, 0, False)
     print("")
     print("offset 1")
-    tester.heuristic_trials(trials, t, 1, False)
+    tester.heuristic_trials(trials, t, test_cases, 1, False)
 
 

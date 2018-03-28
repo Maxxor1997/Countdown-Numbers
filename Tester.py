@@ -23,13 +23,19 @@ class Tester:
 			product = product * num
 		return product
 
-	def brute_force_trials(self, trials, timeout, debug):
+	def gen_test_nums(self, n, k, trials):
+		test_cases = list()
+		for i in range(trials):
+			test_cases.append(self.gen_rand_nums(n, k))
+		return test_cases
+
+	def brute_force_trials(self, trials, timeout, test_cases, debug):
 		start = time.clock()
 		solved = 0
 		off = 0
 		print("Starting Brute Force Trials")
 		for i in range(trials):
-			nums = self.gen_rand_nums(self.n, self.k)
+			nums = test_cases[i]
 			if debug:
 				print(nums)
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
@@ -51,14 +57,14 @@ class Tester:
 		print("Total Time: " + str(end - start))
 		print("Average Time: " + str(average))
 
-	def heuristic_trials(self, trials, timeout, offset, debug):
+	def heuristic_trials(self, trials, timeout, test_cases, offset, debug):
 		start = time.clock()
 		solved = 0
 		off = 0
 		found_total = 0
 		print("Starting Heuristic Trials")
 		for i in range(trials):
-			nums = self.gen_rand_nums(self.n, self.k)
+			nums = test_cases[i]
 			if debug:
 				print(nums)
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
@@ -95,6 +101,6 @@ class Tester:
 		print("Target is " + str(target))
 		print("Closest: " + str(closest))
 		print("Solution: " + str(solution))
-		end = time.time()
+		end = time.clock()
 		print("Time elapsed: " + str(end - start))
 			
