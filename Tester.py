@@ -64,7 +64,7 @@ class Tester:
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
 			if debug:
 				print("Target: " + str(target))
-			solver = Solver_heuristic(self.n, self.k, target, nums, timeout, 500, 0.9, debug)
+			solver = Solver_heuristic(self.n, int(self.n / 2), self.k, target, nums, timeout, 200, 0.9, debug)
 			(closest, solution, found_size) = solver.heuristic_search()
 			found_total = found_total + found_size
 			if (closest == target):
@@ -74,6 +74,7 @@ class Tester:
 			if debug:
 				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
 				print(solution)
+				print("")
 		end = time.time()
 		average = (end - start) / trials
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")

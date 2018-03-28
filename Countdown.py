@@ -42,6 +42,19 @@ def use_DFS_hash():
 	print("with hash " + str(end - start))
 	return all_targets_reachable
 
+def use_Analysis(n, k):
+    analysis = Analysis()
+    start = time.time()
+    all_solutions = analysis.get_analysis(n, k)
+    end = time.time()
+    average = (end - start) / (k**n)
+    print("k = " + str(k))
+    for (key, value) in all_solutions:
+      print(str(key) + ": " + str(value) + "%")
+    print("total time: " + str(end - start))
+    print("average time: " + str(average))
+    analysis.visualize(all_solutions, k)
+
 if __name__ == "__main__":
     # targets1 = use_DFS_hash()
     # targets2 = use_DFS_marked()
@@ -52,40 +65,11 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     k = 25
     n = 10
-    analysis = Analysis()
-    # start = time.time()
-    # all_solutions = analysis.get_analysis(k)
-    # end = time.time()
-    # average = (end - start) / (k**5)
-    # print("k = " + str(k))
-    # for (key, value) in all_solutions:
-    # 	print(str(key) + ": " + str(value) + "%")
-    # print("total time: " + str(end - start))
-    # print("average time: " + str(average))
-    #analysis.visualize(all_solutions, k)
-
-    # start = time.time()
-    # all_solutions = analysis.get_analysis_1(k)
-    # end = time.time()
-    # average = (end - start) / (k**n)
-    # print("k = " + str(k))
-    # for (key, value) in all_solutions:
-    # 	print(str(key) + ": " + str(value) + "%")
-    # print("total time: " + str(end - start))
-    # print("average time: " + str(average))
-    # analysis.visualize(all_solutions, k)
     
-    # nums = [1,2,2,2,2]
-    # solver = Solver(5, 21, nums)
-    # start = time.time()
-    # (closest, solution) = solver.brute_force()
-    # end = time.time()
-    # print("Closest: " + str(closest))
-    # print(solution)
-    # print("time: " + str(end - start) + " seconds")
 
-    tester = Tester(n, k)
-    #tester.brute_force_trials(1000, 0.1, False)
+    #tester = Tester(n, k)
+    #tester.brute_force_trials(1000, 1, False)
     #print("")
-    tester.heuristic_trials(1000, 0.1, False)
+    #tester.heuristic_trials(100, 0.1, True)
+    use_Analysis(4, 25)
 

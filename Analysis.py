@@ -57,24 +57,15 @@ class Analysis:
 		return scaling
 
 
-	def get_analysis(self, k):
-		all_solutions = dict()
-		for a in range(1, k+1):
-			for b in range(1, k+1):
-				for c in range(1, k+1):
-					for d in range (1, k+1):
-						for e in range (1, k+1):
-							nums = [a, b, c, d, e]
-							dfs_hash = DFS_hash(5, nums, k)
-							solutions = dfs_hash.get_reachable_targets()
-							for sol in solutions:
-								if not sol in all_solutions:
-									all_solutions[sol] = 1
-								else:
-									all_solutions[sol] = all_solutions[sol] + 1
-		return self.sort_by_value(self.format_all_solutions(all_solutions, k, 5))
+	def get_analysis(self, n, k):
+		if n == 4:
+			return self.get_analysis_4(k)
+		elif n == 5:
+			return self.get_analysis_5(k)
+		else:
+		 	return None
 
-	def get_analysis_1(self, k):
+	def get_analysis_5(self, k):
 		all_solutions = dict()
 		for a in range(1, k+1):
 			for b in range(a, k+1):
@@ -91,6 +82,23 @@ class Analysis:
 								else:
 									all_solutions[sol] = all_solutions[sol] + scaling_factor
 		return self.sort_by_value(self.format_all_solutions(all_solutions, k, 5))
+
+	def get_analysis_4(self, k):
+		all_solutions = dict()
+		for a in range(1, k+1):
+			for b in range(a, k+1):
+				for c in range(b, k+1):
+					for d in range (c, k+1):
+						nums = [a, b, c, d]
+						dfs_hash = DFS_hash(4, nums, k)
+						solutions = dfs_hash.get_reachable_targets()
+						scaling_factor = self.get_scaling_factor(nums)
+						for sol in solutions:
+							if not sol in all_solutions:
+								all_solutions[sol] = scaling_factor
+							else:
+								all_solutions[sol] = all_solutions[sol] + scaling_factor
+		return self.sort_by_value(self.format_all_solutions(all_solutions, k, 4))
 
 
 

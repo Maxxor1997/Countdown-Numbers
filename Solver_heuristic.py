@@ -3,13 +3,14 @@ import time
 
 class Solver_heuristic:
 
-	def __init__(self, n, k, target, nums, timeout, heuristic_range, time_ratio, debug):
+	def __init__(self, n, first_half, k, target, nums, timeout, heuristic_range, time_ratio, debug):
 		self.start = time.time()
 		self.n = n
 		self.nums = nums
 		self.target = target
 		self.timeout = timeout
 		self.time_ratio = time_ratio
+		self.first_half = first_half
 		self.start = time.time()
 		self.debug = debug
 		self.hashes = dict()
@@ -17,7 +18,7 @@ class Solver_heuristic:
 
 		#initialize dict structure
 		self.most_likely = set()
-		file_name = "results_n" + str(int(n/2)) + "_k" + str(k) + ".txt"
+		file_name = "results_n" + str(self.n - self.first_half) + "_k" + str(k) + ".txt"
 		input_file = open(file_name)
 		text = input_file.readlines()[1:heuristic_range + 1]
 		for line in text:
@@ -50,17 +51,16 @@ class Solver_heuristic:
 		return sum
 
 	def heuristic_search(self):
-		half = int(self.n/2)
-		first_half = self.nums[:half+1]
-		second_half = self.nums[half+1:]
+		first_half = self.nums[:self.first_half]
+		second_half = self.nums[self.first_half:]
 
 		self.pre_process(first_half, self.heuristic_targets)
 
 		self.recursion(first_half, "", self.start + self.timeout*self.time_ratio)
-		if self.debug:
-			for tar in self.heuristic_targets:
-				print(tar)
-				print(self.heuristic_targets[tar])
+		# if self.debug:
+		# 	for tar in self.heuristic_targets:
+		# 		print(tar)
+		# 		print(self.heuristic_targets[tar])
 
 		self.found = dict()
 
