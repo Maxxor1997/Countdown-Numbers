@@ -85,6 +85,7 @@ if __name__ == "__main__":
     # print("time: " + str(end - start) + " seconds")
 
     tester = Tester(n, k)
-    #tester.brute_force_trials(100, 0.5, False)
-    tester.heuristic_trials(100, 1, True)
+    #tester.brute_force_trials(1000, 0.1, False)
+    #print("")
+    tester.heuristic_trials(1000, 0.1, False)
 

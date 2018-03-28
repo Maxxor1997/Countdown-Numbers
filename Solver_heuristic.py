@@ -3,12 +3,14 @@ import time
 
 class Solver_heuristic:
 
-	def __init__(self, n, k, target, nums, timeout, heuristic_range, debug):
+	def __init__(self, n, k, target, nums, timeout, heuristic_range, time_ratio, debug):
 		self.start = time.time()
 		self.n = n
 		self.nums = nums
 		self.target = target
 		self.timeout = timeout
+		self.time_ratio = time_ratio
+		self.start = time.time()
 		self.debug = debug
 		self.hashes = dict()
 		self.searched = set()
@@ -17,7 +19,7 @@ class Solver_heuristic:
 		self.most_likely = set()
 		file_name = "results_n" + str(int(n/2)) + "_k" + str(k) + ".txt"
 		input_file = open(file_name)
-		text = input_file.readlines()[500:500+heuristic_range + 1]
+		text = input_file.readlines()[1:heuristic_range + 1]
 		for line in text:
 			index = line.index(":")
 			num = line[:index]
@@ -52,9 +54,9 @@ class Solver_heuristic:
 		first_half = self.nums[:half+1]
 		second_half = self.nums[half+1:]
 
-		#self.pre_process(first_half, self.heuristic_targets)
+		self.pre_process(first_half, self.heuristic_targets)
 
-		self.recursion(first_half, "", self.start, self.timeout*0.9)
+		self.recursion(first_half, "", self.start + self.timeout*self.time_ratio)
 		if self.debug:
 			for tar in self.heuristic_targets:
 				print(tar)
@@ -62,12 +64,14 @@ class Solver_heuristic:
 
 		self.found = dict()
 
-		#self.pre_process_2(second_half, self.most_likely)
-		self.recursion_2(second_half, "", self.start + self.timeout*0.9, self.timeout*0.1)
+		self.pre_process_2(second_half, self.most_likely)
+		self.recursion_2(second_half, "", self.start + self.timeout)
 		if self.debug:
 			for f in self.found:
-			print(f)
-			print(self.found[f])
+				print(f)
+				print(self.found[f])
+		found_size = len(self.found)
+
 		final_closest = self.nums[0]
 		final_solution = str(self.nums[0])
 		for tar in self.heuristic_targets:
@@ -102,7 +106,7 @@ class Solver_heuristic:
 						final_closest = newNum4
 						final_solution = self.found[likely] + " / " + solution
 
-		return(final_closest, final_solution)
+		return(final_closest, final_solution, found_size)
 
 
 	def pre_process(self, nums, targets):
@@ -117,8 +121,8 @@ class Solver_heuristic:
 			if num in targets:
 				self.found[num] = str(num)
 
-	def recursion_2(self, nums, currPath, start, timeout):
-		if time.time()-start >= timeout:
+	def recursion_2(self, nums, currPath, timeout):
+		if time.time() >= timeout:
 			return
 
 		if len(nums) == 1:
@@ -143,9 +147,9 @@ class Solver_heuristic:
 				newList1.remove(firstNum)
 				newList1.remove(secondNum)
 				newList1.append(newNum1)
-				self.recursion(newList1, newPath1, start, timeout)
+				self.recursion_2(newList1, newPath1, timeout)
 
-				if time.time()-start >= timeout:
+				if time.time()>= timeout:
 					return
 
 				if (firstNum != secondNum):
@@ -159,7 +163,7 @@ class Solver_heuristic:
 							newPath2 = currPath + "(" + str(firstNum) + " - " + str(secondNum) + ")"
 							if newNum2 in self.most_likely:
 								self.found[newNum2] = newPath2
-							self.recursion(newList2, newPath2, start, timeout)
+							self.recursion_2(newList2, newPath2, timeout)
 					else:
 						newNum2 = secondNum - firstNum
 						if newNum2 != firstNum:
@@ -170,9 +174,9 @@ class Solver_heuristic:
 							newPath2 = currPath + "(" + str(secondNum) + " - " + str(firstNum) + ")"
 							if newNum2 in self.most_likely:
 								self.found[newNum2] = newPath2
-							self.recursion(newList2, newPath2, start, timeout)
+							self.recursion_2(newList2, newPath2, timeout)
 
-				if time.time()-start >= timeout:
+				if time.time() >= timeout:
 					return
 
 				if (firstNum != 1 and secondNum != 1):
@@ -184,9 +188,9 @@ class Solver_heuristic:
 					newPath3 = currPath + "(" + str(firstNum) + " x " + str(secondNum) + ")"
 					if newNum3 in self.most_likely:
 						self.found[newNum3] = newPath3
-					self.recursion(newList3, newPath3, start, timeout)
+					self.recursion_2(newList3, newPath3, timeout)
 
-				if time.time()-start >= timeout:
+				if time.time()>= timeout:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -199,10 +203,10 @@ class Solver_heuristic:
 						newPath4 = currPath + "(" + str(firstNum) + " / " + str(secondNum) + ")"
 						if newNum4 in self.most_likely:
 							self.found[newNum4] = newPath4
-						self.recursion(newList4, newPath4, start, timeout)
+						self.recursion_2(newList4, newPath4, timeout)
 
 
-				if time.time()-start >= timeout:
+				if time.time() >= timeout:
 					return
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
@@ -215,16 +219,16 @@ class Solver_heuristic:
 						newPath4 = currPath + "(" + str(secondNum) + " / " + str(firstNum) + ")"
 						if newNum4 in self.most_likely:
 							self.found[newNum4] = newPath4
-						self.recursion(newList4, newPath4, start, timeout)
+						self.recursion_2(newList4, newPath4, timeout)
 					
-				if time.time()-start >= timeout:
+				if time.time() >= timeout:
 					return
 
 
 
-	def recursion(self, nums, currPath, start, timeout):
+	def recursion(self, nums, currPath, timeout):
 
-		if time.time()-start >= timeout:
+		if time.time() >= timeout:
 			return
 
 		if len(nums) == 1:
@@ -251,9 +255,9 @@ class Solver_heuristic:
 				newList1.remove(firstNum)
 				newList1.remove(secondNum)
 				newList1.append(newNum1)
-				self.recursion(newList1, newPath1, start, timeout)
+				self.recursion(newList1, newPath1, timeout)
 
-				if time.time()-start >= timeout:
+				if time.time()>= timeout:
 					return
 
 				if (firstNum != secondNum):
@@ -269,7 +273,7 @@ class Solver_heuristic:
 								(closest, solution, likely) = self.heuristic_targets[tar]
 								if abs(newNum2 - tar) < abs(closest - tar):
 									self.heuristic_targets[tar] = (newNum2, newPath2, likely)
-							self.recursion(newList2, newPath2, start, timeout)
+							self.recursion(newList2, newPath2, timeout)
 					else:
 						newNum2 = secondNum - firstNum
 						if newNum2 != firstNum:
@@ -282,9 +286,9 @@ class Solver_heuristic:
 								(closest, solution, likely) = self.heuristic_targets[tar]
 								if abs(newNum2 - tar) < abs(closest - tar):
 									self.heuristic_targets[tar] = (newNum2, newPath2, likely)
-							self.recursion(newList2, newPath2, start, timeout)
+							self.recursion(newList2, newPath2, timeout)
 
-				if time.time()-start >= timeout:
+				if time.time()>= timeout:
 					return
 
 				if (firstNum != 1 and secondNum != 1):
@@ -298,9 +302,9 @@ class Solver_heuristic:
 						(closest, solution, likely) = self.heuristic_targets[tar]
 						if abs(newNum3 - tar) < abs(closest - tar):
 							self.heuristic_targets[tar] = (newNum3, newPath3, likely)
-					self.recursion(newList3, newPath3, start, timeout)
+					self.recursion(newList3, newPath3, timeout)
 
-				if time.time()-start >= timeout:
+				if time.time() >= timeout:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -315,10 +319,10 @@ class Solver_heuristic:
 							(closest, solution, likely) = self.heuristic_targets[tar]
 							if abs(newNum4 - tar) < abs(closest - tar):
 								self.heuristic_targets[tar] = (newNum4, newPath4, likely)
-						self.recursion(newList4, newPath4, start, timeout)
+						self.recursion(newList4, newPath4, timeout)
 
 
-				if time.time()-start >= timeout:
+				if time.time()>= timeout:
 					return
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
@@ -333,8 +337,8 @@ class Solver_heuristic:
 							(closest, solution, likely) = self.heuristic_targets[tar]
 							if abs(newNum4 - tar) < abs(closest - tar):
 								self.heuristic_targets[tar] = (newNum4, newPath4, likely)
-						self.recursion(newList4, newPath4, start, timeout)
+						self.recursion(newList4, newPath4, timeout)
 
 					
-				if time.time()-start >= timeout:
+				if time.time()>= timeout:
 					return
