@@ -51,7 +51,7 @@ class Tester:
 		print("Total Time: " + str(end - start))
 		print("Average Time: " + str(average))
 
-	def heuristic_trials(self, trials, timeout, debug):
+	def heuristic_trials(self, trials, timeout, offset, debug):
 		start = time.time()
 		solved = 0
 		off = 0
@@ -64,7 +64,7 @@ class Tester:
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
 			if debug:
 				print("Target: " + str(target))
-			solver = Solver_heuristic(self.n, int(self.n / 2), self.k, target, nums, timeout, 200, 0.9, debug)
+			solver = Solver_heuristic(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 200, 0.9, debug)
 			(closest, solution, found_size) = solver.heuristic_search()
 			found_total = found_total + found_size
 			if (closest == target):

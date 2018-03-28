@@ -40,7 +40,7 @@ class Analysis:
 		plt.show()
 
 	def get_scaling_factor(self, nums):
-		scaling = 120 #5!
+		scaling = math.factorial(len(nums))
 		duplicates = list()
 		curr_num = nums[0]
 		count = 0

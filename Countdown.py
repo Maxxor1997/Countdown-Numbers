@@ -67,9 +67,13 @@ if __name__ == "__main__":
     n = 10
     
 
-    #tester = Tester(n, k)
+    tester = Tester(n, k)
     #tester.brute_force_trials(1000, 1, False)
     #print("")
-    #tester.heuristic_trials(100, 0.1, True)
-    use_Analysis(4, 25)
+    print("offset 0")
+    tester.heuristic_trials(1000, 0.1, 0, False)
+    print("")
+    print("offset 1")
+    tester.heuristic_trials(1000, 0.1, 1, False)
+
 
