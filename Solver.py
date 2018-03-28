@@ -3,11 +3,12 @@ import time
 
 class Solver:
 
-	def __init__(self, n, target, nums, timeout):
+	def __init__(self, n, target, nums, timeout, debug):
 		self.n = n
 		self.nums = nums
 		self.target = target
 		self.timeout = timeout
+		self.debug = debug
 		self.hashes = dict()
 		self.searched = set()
 
@@ -45,9 +46,10 @@ class Solver:
 	def recursion(self, nums, currPath):
 
 		#for debugging
-		if abs(self.closest - self.target) < self.diff:
-			self.diff = abs(self.closest - self.target)
-			print(self.diff)
+		if self.debug:
+			if abs(self.closest - self.target) < self.diff:
+				self.diff = abs(self.closest - self.target)
+				print(self.diff)
 
 		if self.closest == self.target:
 			return

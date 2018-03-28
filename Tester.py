@@ -23,24 +23,27 @@ class Tester:
 			product = product * num
 		return product
 
-	def brute_force_trials(self, trials, timeout):
+	def brute_force_trials(self, trials, timeout, debug):
 		start = time.time()
 		solved = 0
 		off = 0
 		print("Starting Brute Force Trials")
 		for i in range(trials):
 			nums = self.gen_rand_nums(self.n, self.k)
-			print(nums)
+			if debug:
+				print(nums)
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
-			print("Target: " + str(target))
-			solver = Solver(self.n, target, nums, timeout)
+			if debug:
+				print("Target: " + str(target))
+			solver = Solver(self.n, target, nums, timeout, debug)
 			(closest, solution) = solver.brute_force()
 			if (closest == target):
 				solved = solved + 1
 			else:
 				off = off + abs(closest - target)
-			print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
-			print(solution)
+			if debug:
+				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
+				print(solution)
 		end = time.time()
 		average = (end - start) / trials
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
@@ -48,24 +51,27 @@ class Tester:
 		print("Total Time: " + str(end - start))
 		print("Average Time: " + str(average))
 
-	def heuristic_trials(self, trials, timeout):
+	def heuristic_trials(self, trials, timeout, debug):
 		start = time.time()
 		solved = 0
 		off = 0
 		print("Starting Heuristic Trials")
 		for i in range(trials):
 			nums = self.gen_rand_nums(self.n, self.k)
-			print(nums)
+			if debug:
+				print(nums)
 			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
-			print("Target: " + str(target))
-			solver = Solver_heuristic(self.n, self.k, target, nums, timeout, 100)
+			if debug:
+				print("Target: " + str(target))
+			solver = Solver_heuristic(self.n, self.k, target, nums, timeout, 300, debug)
 			(closest, solution) = solver.heuristic_search()
 			if (closest == target):
 				solved = solved + 1
 			else:
 				off = off + abs(closest - target)
-			print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
-			print(solution)
+			if debug:
+				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
+				print(solution)
 		end = time.time()
 		average = (end - start) / trials
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
@@ -80,6 +86,11 @@ class Tester:
 		print("Starting Heuristic Trials Test")
 		nums = self.gen_rand_nums(self.n, self.k)
 		target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
+		solver = Solver_heuristic(self.n, self.k, target, nums, timeout, 300)
+		(closest, solution) = solver.heuristic_search()
 		print("Target is " + str(target))
-		solver = Solver_heuristic(self.n, self.k, target, nums, timeout, 2)
+		print("Closest: " + str(closest))
+		print("Solution: " + str(solution))
+		end = time.time()
+		print("Time elapsed: " + str(end - start))
 			
