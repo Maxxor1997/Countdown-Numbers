@@ -1,25 +1,25 @@
 Timeout = 0.1s
 Starting Brute Force Trials
-Percentage Solved: 6.5%
-Average Error: 901.97
-Total Time: 96.35381197929382
-Average Time: 0.09635381197929382
+Percentage Solved: 5.6%
+Average Error: 2756.37
+Total Time: 96.954848
+Average Time: 0.096954848
 
 offset 0
 Starting Heuristic Trials
-Percentage Solved: 11.7%
-Average Error: 5069.863
-Average Found Size: 158.61
-Total Time: 101.09115099906921
-Average Time: 0.10109115099906921
+Percentage Solved: 10.4%
+Average Error: 5495.39
+Average Found Size: 146.425
+Total Time: 101.016268
+Average Time: 0.10101626799999999
 
 offset 1
 Starting Heuristic Trials
-Percentage Solved: 12.9%
-Average Error: 7861.734
-Average Found Size: 87.672
-Total Time: 93.09854221343994
-Average Time: 0.09309854221343994
+Percentage Solved: 11.3%
+Average Error: 8558.767
+Average Found Size: 88.026
+Total Time: 93.817692
+Average Time: 0.093817692
 
 Timeout = 0.2s
 Starting Brute Force Trials

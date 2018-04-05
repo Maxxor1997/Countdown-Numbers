@@ -65,10 +65,10 @@ class Solver_heuristic:
 
 		self.pre_process_2(second_half, self.most_likely)
 		self.recursion_2(second_half, "", self.start + self.timeout)
-		if self.debug:
-			for f in self.found:
-				print(f)
-				print(self.found[f])
+		# if self.debug:
+		# 	for f in self.found:
+		# 		print(f)
+		# 		print(self.found[f])
 		found_size = len(self.found)
 
 		final_closest = self.nums[0]

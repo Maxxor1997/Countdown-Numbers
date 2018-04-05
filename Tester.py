@@ -38,7 +38,7 @@ class Tester:
 			nums = test_cases[i]
 			if debug:
 				print(nums)
-			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
+			target = random.randint(1, int(self.max_possible(nums) ** (1. / 3)))
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver(self.n, target, nums, timeout, debug)
@@ -50,6 +50,7 @@ class Tester:
 			if debug:
 				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
 				print(solution)
+				print("")
 		end = time.clock()
 		average = (end - start) / trials
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
@@ -62,12 +63,44 @@ class Tester:
 		solved = 0
 		off = 0
 		found_total = 0
-		print("Starting Heuristic Trials")
+		print("Starting Heuristic Trials with Offset " + str(offset))
 		for i in range(trials):
 			nums = test_cases[i]
 			if debug:
 				print(nums)
-			target = random.randint(1, int(math.sqrt(self.max_possible(nums))))
+			target = random.randint(1, int(self.max_possible(nums) ** (1. / 3)))
+			if debug:
+				print("Target: " + str(target))
+			solver = Solver_heuristic(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 200, 0.9, debug)
+			(closest, solution, found_size) = solver.heuristic_search()
+			found_total = found_total + found_size
+			if (closest == target):
+				solved = solved + 1
+			else:
+				off = off + abs(closest - target)
+			if debug:
+				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
+				print(solution)
+				print("")
+		end = time.clock()
+		average = (end - start) / trials
+		print("Percentage Solved: " + str(100 * solved / trials) + "%")
+		print("Average Error: " + str(off/trials))
+		print("Average Found Size: " + str(found_total/trials))
+		print("Total Time: " + str(end - start))
+		print("Average Time: " + str(average))
+
+	def heuristic2_trials(self, trials, timeout, test_cases, offset, debug):
+		start = time.clock()
+		solved = 0
+		off = 0
+		found_total = 0
+		print("Starting Heuristic Trials with Offset " + str(offset))
+		for i in range(trials):
+			nums = test_cases[i]
+			if debug:
+				print(nums)
+			target = random.randint(1, int(self.max_possible(nums) ** (1. / 3)))
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver_heuristic(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 200, 0.9, debug)
