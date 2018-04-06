@@ -65,17 +65,26 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     k = 25
     n = 10
-    t = 0.3
+    t = 0.5
+    max_target = k**3
     trials = 1000
     debug = False
 
     tester = Tester(n, k)
     print("Timeout = " + str(t) + "s")
+    print("Max Target is " + str(max_target))
+    print("")
     test_cases = tester.gen_test_nums(n, k, trials)
-    tester.brute_force_trials(trials, t, test_cases, debug)
+    tester.heuristic3_trials(trials, t, test_cases, 0, max_target, True, debug)
     print("")
-    tester.heuristic_trials(trials, t, test_cases, 0, debug)
+    tester.heuristic2_trials(trials, t, test_cases, 0, max_target, True, debug)
     print("")
-    tester.heuristic_trials(trials, t, test_cases, 1, debug)
+    tester.heuristic2_trials(trials, t, test_cases, 0, max_target, False, debug)
+    print("")
+    tester.brute_force_trials(trials, t, test_cases, max_target, debug)
+    print("")
+    tester.heuristic_trials(trials, t, test_cases, 0, max_target, debug)
+    print("")
+    tester.heuristic_trials(trials, t, test_cases, 1, max_target, debug)
 
 
