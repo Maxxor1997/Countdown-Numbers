@@ -65,9 +65,9 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     k = 25
     n = 10
-    t = 0.5
+    t = 0.1
     max_target = k**3
-    trials = 1000
+    trials = 100
     debug = False
 
     tester = Tester(n, k)
