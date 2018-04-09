@@ -1,6 +1,7 @@
 from Solver import Solver
 from Solver_heuristic import Solver_heuristic
 from Solver_heuristic2 import Solver_heuristic2
+from DFS import DFS
 import time
 import random
 import math
@@ -30,8 +31,49 @@ class Tester:
 			test_cases.append(self.gen_rand_nums(n, k))
 		return test_cases
 
-	def brute_force_trials(self, trials, timeout, test_cases, max_target, debug):
-		
+	def gen_target_nums(self, max_target, trials):
+		target_numbers = list()
+		for i in range(trials):
+			target_numbers.append(random.randint(1, max_target))
+		return target_numbers
+
+	def base_trials(self, trials, test_cases, target_numbers, debug):
+		solved = 0
+		off = 0
+		time_solved = 0
+		time_unsolved = 0
+		for i in range(trials):
+			if i%(trials/20)==0:
+				print(str(i*100/trials) + "%")
+			start = time.clock()
+			nums = test_cases[i]
+			target = target_numbers[i]
+			dfs = DFS(len(nums), nums, target, True)
+			(closest, solution) = dfs.get_solutions()
+			elapsed = time.clock() - start
+			if closest == target:
+				time_solved = time_solved + elapsed
+				solved = solved + 1
+			else:
+				time_unsolved = time_unsolved + elapsed
+				off = off + abs(target - closest)
+			if debug:
+				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
+				print(solution)
+				print("")
+		print("Percentage Solved: " + str(100 * solved / trials) + "%")
+		print("Average Error: " + str(off/trials))
+		print("Total Time: " + str(time_solved + time_unsolved))
+		if solved==0:
+			print("Average Time for Solved Case: " + str(0))
+		else:
+			print("Average Time for Solved Case: " + str(time_solved/solved))
+		if trials-solved==0:
+			print("Average Time for unsolved Case: " + str(0))
+		else:
+			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+
+	def brute_force_trials(self, trials, timeout, test_cases, target_numbers, debug):
 		solved = 0
 		off = 0
 		time_solved = 0
@@ -42,7 +84,7 @@ class Tester:
 			nums = test_cases[i]
 			if debug:
 				print(nums)
-			target = random.randint(1, max_target)
+			target = target_numbers[i]
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver(self.n, target, nums, timeout, debug)
@@ -62,10 +104,17 @@ class Tester:
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
 		print("Average Error: " + str(off/trials))
 		print("Total Time: " + str(time_solved + time_unsolved))
-		print("Average Time for Solved Case: " + str(time_solved/solved))
-		print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+		if solved==0:
+			print("Average Time for Solved Case: " + str(0))
+		else:
+			print("Average Time for Solved Case: " + str(time_solved/solved))
+		if trials-solved==0:
+			print("Average Time for unsolved Case: " + str(0))
+		else:
+			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-	def heuristic_trials(self, trials, timeout, test_cases, offset, max_target, debug):
+
+	def heuristic_trials(self, trials, timeout, test_cases, offset, target_numbers, debug):
 
 		solved = 0
 		off = 0
@@ -78,7 +127,7 @@ class Tester:
 			nums = test_cases[i]
 			if debug:
 				print(nums)
-			target = random.randint(1, max_target)
+			target = target_numbers[i]
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver_heuristic(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 200, 0.9, debug)
@@ -100,10 +149,17 @@ class Tester:
 		print("Average Error: " + str(off/trials))
 		print("Average Found Size: " + str(found_total/trials))
 		print("Total Time: " + str(time_solved + time_unsolved))
-		print("Average Time for Solved Case: " + str(time_solved/solved))
-		print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+		if solved==0:
+			print("Average Time for Solved Case: " + str(0))
+		else:
+			print("Average Time for Solved Case: " + str(time_solved/solved))
+		if trials-solved==0:
+			print("Average Time for unsolved Case: " + str(0))
+		else:
+			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-	def heuristic2_trials(self, trials, timeout, test_cases, offset, max_target, multiply, debug):
+
+	def heuristic2_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, debug):
 	
 		solved = 0
 		off = 0
@@ -118,7 +174,7 @@ class Tester:
 			nums = test_cases[i]
 			if debug:
 				print(nums)
-			target = random.randint(1, max_target)
+			target = target_numbers[i]
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 10, multiply, debug)
@@ -139,10 +195,17 @@ class Tester:
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
 		print("Average Error: " + str(off/trials))
 		print("Total Time: " + str(time_solved + time_unsolved))
-		print("Average Time for Solved Case: " + str(time_solved/solved))
-		print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+		if solved==0:
+			print("Average Time for Solved Case: " + str(0))
+		else:
+			print("Average Time for Solved Case: " + str(time_solved/solved))
+		if trials-solved==0:
+			print("Average Time for unsolved Case: " + str(0))
+		else:
+			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-	def heuristic3_trials(self, trials, timeout, test_cases, offset, max_target, multiply, debug):
+
+	def heuristic3_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, debug):
 		
 		solved = 0
 		off = 0
@@ -157,7 +220,7 @@ class Tester:
 			nums = test_cases[i]
 			if debug:
 				print(nums)
-			target = random.randint(1, max_target)
+			target = target_numbers[i]
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 1, multiply, debug)
@@ -177,8 +240,15 @@ class Tester:
 		print("Percentage Solved: " + str(100 * solved / trials) + "%")
 		print("Average Error: " + str(off/trials))
 		print("Total Time: " + str(time_solved + time_unsolved))
-		print("Average Time for Solved Case: " + str(time_solved/solved))
-		print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+		if solved==0:
+			print("Average Time for Solved Case: " + str(0))
+		else:
+			print("Average Time for Solved Case: " + str(time_solved/solved))
+		if trials-solved==0:
+			print("Average Time for unsolved Case: " + str(0))
+		else:
+			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+
 
 	def heuristic_trials_test(self, trials, timeout):
 		start = time.clock()
