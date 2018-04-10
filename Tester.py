@@ -69,9 +69,9 @@ class Tester:
 		else:
 			print("Average Time for Solved Case: " + str(time_solved/solved))
 		if trials-solved==0:
-			print("Average Time for unsolved Case: " + str(0))
+			print("Average Time for Unsolved Case: " + str(0))
 		else:
-			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 	def brute_force_trials(self, trials, timeout, test_cases, target_numbers, debug):
 		solved = 0
@@ -109,9 +109,9 @@ class Tester:
 		else:
 			print("Average Time for Solved Case: " + str(time_solved/solved))
 		if trials-solved==0:
-			print("Average Time for unsolved Case: " + str(0))
+			print("Average Time for Unsolved Case: " + str(0))
 		else:
-			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 
 	def heuristic_trials(self, trials, timeout, test_cases, offset, target_numbers, debug):
@@ -154,9 +154,9 @@ class Tester:
 		else:
 			print("Average Time for Solved Case: " + str(time_solved/solved))
 		if trials-solved==0:
-			print("Average Time for unsolved Case: " + str(0))
+			print("Average Time for Unsolved Case: " + str(0))
 		else:
-			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 
 	def heuristic2_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, debug):
@@ -200,9 +200,9 @@ class Tester:
 		else:
 			print("Average Time for Solved Case: " + str(time_solved/solved))
 		if trials-solved==0:
-			print("Average Time for unsolved Case: " + str(0))
+			print("Average Time for Unsolved Case: " + str(0))
 		else:
-			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 
 	def heuristic3_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, debug):
@@ -245,9 +245,9 @@ class Tester:
 		else:
 			print("Average Time for Solved Case: " + str(time_solved/solved))
 		if trials-solved==0:
-			print("Average Time for unsolved Case: " + str(0))
+			print("Average Time for Unsolved Case: " + str(0))
 		else:
-			print("Average Time for unsolved Case: " + str(time_unsolved/(trials - solved)))
+			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 
 	def heuristic_trials_test(self, trials, timeout):

@@ -16,6 +16,7 @@ class Solver_heuristic2:
 		self.debug = debug
 		self.hashes = dict()
 		self.searched = set()
+		self.start = time.clock()
 
 	def get_hash(self, nums):
 		sum = 0
@@ -34,72 +35,81 @@ class Solver_heuristic2:
 	def heuristic_search_3(self):
 		nearest = 0
 		solution = ""
-		for i in range(int(self.target**(1/2)), self.target):
-	
-			if time.clock() >= self.start + self.timeout:
-				break
-				
-			if self.target%i==0 or i == self.target-1:
 
-				if i==self.target:
-					first_target = int(self.target**(1/2))
-					second_target = first_target+1
-				else:
-					first_target = i
-					second_target = self.target / i
+		while time.clock() < self.start + self.timeout:
+			random.shuffle(self.nums)
+			for i in range(int(self.target**(1/2)), self.target):
+					
+				if self.target%i==0 or i == self.target-1:
 
-				first_half = self.nums[:self.first_half]
-				second_half = self.nums[self.first_half:]
+					if i==self.target-1:
+						first_target = int(self.target**(1/2))
+						second_target = first_target+1
+					else:
+						first_target = i
+						second_target = self.target / i
 
-				#search first half
-				self.closest = 0
-				self.solution = ""
-				self.curr_target = first_target
-				self.pre_process_2(first_half)
-				if self.debug:
-					print("timeout " + str(time.clock() + self.timeout/(2 * self.num_searches)))
-					print("curr time " + str(time.clock()))
-					print("")
-				self.recursion(first_half, "", time.clock() + self.timeout/(2 * self.num_searches))
+					first_half = self.nums[:self.first_half]
+					second_half = self.nums[self.first_half:]
 
-				nearest_first = self.closest
-				solution_first = self.solution
+					if time.clock() >= self.start + self.timeout:
+						break
 
-				#search second half
-				self.closest = 0
-				self.solution = ""
-				self.curr_target = second_target
-				self.pre_process_2(second_half)
-				if self.debug:
-					print("timeout " + str(time.clock() + self.timeout/(2 * self.num_searches)))
-					print("curr time " + str(time.clock()))
-					print("")
-				self.recursion(second_half, "", time.clock() + self.timeout/(2 * self.num_searches))
-				nearest_second = self.closest
-				solution_second = self.solution
+					#search first half
+					self.closest = 0
+					self.solution = ""
+					self.curr_target = first_target
+					self.pre_process_2(first_half)
+					if self.debug:
+						print("timeout " + str(time.clock() + self.timeout))
+						print("curr time " + str(time.clock()))
+						print("")
+					self.recursion(first_half, "", time.clock() + self.timeout)
 
-				#combine and update
-				if self.multiply:
-					nearest_total = nearest_first * nearest_second
-					solution_total = solution_first + " * " + solution_second
+					nearest_first = self.closest
+					solution_first = self.solution
 
-				else:
-					nearest_total = nearest_first + nearest_second
-					solution_total = solution_first + " + " + solution_second
+					if time.clock() >= self.start + self.timeout:
+						break
 
-				if self.debug:
-					print("First half goal: " + str(first_target))
-					print("nearest: " + str(nearest_first))
-					print("solution: " + solution_first)
-					print("Second half goal: " + str(second_target))
-					print("nearest: " + str(nearest_second))
-					print("solution: " + solution_second)
-					print("")
-				if abs(nearest_total - self.target) < abs(nearest - self.target):
-					nearest = nearest_total
-					solution = solution_total
-				if nearest == self.target or (nearest_first == first_target and nearest_second == second_target):
-					return(nearest, solution)
+					#search second half
+					self.closest = 0
+					self.solution = ""
+					self.curr_target = second_target
+					self.pre_process_2(second_half)
+					if self.debug:
+						print("timeout " + str(time.clock() + self.timeout))
+						print("curr time " + str(time.clock()))
+						print("")
+					self.recursion(second_half, "", time.clock() + self.timeout)
+					nearest_second = self.closest
+					solution_second = self.solution
+
+					if time.clock() >= self.start + self.timeout:
+						break
+						
+					#combine and update
+					if self.multiply:
+						nearest_total = nearest_first * nearest_second
+						solution_total = solution_first + " * " + solution_second
+
+					else:
+						nearest_total = nearest_first + nearest_second
+						solution_total = solution_first + " + " + solution_second
+
+					if self.debug:
+						print("First half goal: " + str(first_target))
+						print("nearest: " + str(nearest_first))
+						print("solution: " + solution_first)
+						print("Second half goal: " + str(second_target))
+						print("nearest: " + str(nearest_second))
+						print("solution: " + solution_second)
+						print("")
+					if abs(nearest_total - self.target) < abs(nearest - self.target):
+						nearest = nearest_total
+						solution = solution_total
+					if nearest == self.target:
+						return(nearest, solution)
 
 		return(nearest, solution)
 
@@ -170,7 +180,7 @@ class Solver_heuristic2:
 			if abs(nearest_total - self.target) < abs(nearest - self.target):
 				nearest = nearest_total
 				solution = solution_total
-			if nearest == self.target or (nearest_first == first_target and nearest_second == second_target):
+			if nearest == self.target:
 				return(nearest, solution)
 
 		return(nearest, solution)
