@@ -8,15 +8,14 @@ class Solver_heuristic2:
 		self.n = n
 		self.nums = nums
 		self.target = target
-		self.timeout = timeout
 		self.first_half = first_half
 		self.num_searches = num_searches
 		self.multiply = multiply
-		self.start = time.clock()
 		self.debug = debug
 		self.hashes = dict()
 		self.searched = set()
-		self.start = time.clock()
+		self.max = time.clock() + timeout
+		self.timeout = timeout
 
 	def get_hash(self, nums):
 		sum = 0
@@ -36,9 +35,16 @@ class Solver_heuristic2:
 		nearest = 0
 		solution = ""
 
-		while time.clock() < self.start + self.timeout:
-			random.shuffle(self.nums)
+		while time.clock() < self.max:
+			random.shuffle(self.nums) 
+
+			if time.clock() >= self.max:
+						return(nearest, solution)
+
 			for i in range(int(self.target**(1/2)), self.target):
+
+				if time.clock() >= self.max:
+						return(nearest, solution)
 					
 				if self.target%i==0 or i == self.target-1:
 
@@ -49,17 +55,24 @@ class Solver_heuristic2:
 						first_target = i
 						second_target = self.target / i
 
+					if time.clock() >= self.max:
+						return(nearest, solution)
+
 					first_half = self.nums[:self.first_half]
 					second_half = self.nums[self.first_half:]
 
-					if time.clock() >= self.start + self.timeout:
-						break
+					if time.clock() >= self.max:
+						return(nearest, solution)
 
 					#search first half
 					self.closest = 0
 					self.solution = ""
 					self.curr_target = first_target
 					self.pre_process_2(first_half)
+
+					if time.clock() >= self.max:
+						return(nearest, solution)
+
 					if self.debug:
 						print("timeout " + str(time.clock() + self.timeout))
 						print("curr time " + str(time.clock()))
@@ -69,14 +82,18 @@ class Solver_heuristic2:
 					nearest_first = self.closest
 					solution_first = self.solution
 
-					if time.clock() >= self.start + self.timeout:
-						break
+					if time.clock() >= self.max:
+						return(nearest, solution)
 
 					#search second half
 					self.closest = 0
 					self.solution = ""
 					self.curr_target = second_target
 					self.pre_process_2(second_half)
+
+					if time.clock() >= self.max:
+						return(nearest, solution)
+
 					if self.debug:
 						print("timeout " + str(time.clock() + self.timeout))
 						print("curr time " + str(time.clock()))
@@ -85,9 +102,9 @@ class Solver_heuristic2:
 					nearest_second = self.closest
 					solution_second = self.solution
 
-					if time.clock() >= self.start + self.timeout:
-						break
-						
+					if time.clock() >= self.max:
+						return(nearest, solution)
+
 					#combine and update
 					if self.multiply:
 						nearest_total = nearest_first * nearest_second
@@ -96,6 +113,9 @@ class Solver_heuristic2:
 					else:
 						nearest_total = nearest_first + nearest_second
 						solution_total = solution_first + " + " + solution_second
+
+					if time.clock() >= self.max:
+						return(nearest, solution)
 
 					if self.debug:
 						print("First half goal: " + str(first_target))
@@ -128,16 +148,26 @@ class Solver_heuristic2:
 		nearest = 0
 		solution = ""
 
-		while time.clock() <= self.start + self.timeout:
+		while time.clock() <= self.max:
 			random.shuffle(self.nums)
+
+			if time.clock() >= self.max:
+						return(nearest, solution)
+
 			first_half = self.nums[:self.first_half]
 			second_half = self.nums[self.first_half:]
 
+			if time.clock() >= self.max:
+				return(nearest, solution)
 			#search first half
 			self.closest = 0
 			self.solution = ""
 			self.curr_target = first_target
 			self.pre_process_2(first_half)
+
+			if time.clock() >= self.max:
+						return(nearest, solution)
+
 			if self.debug:
 				print("timeout " + str(time.clock() + self.timeout/(2 * self.num_searches)))
 				print("curr time " + str(time.clock()))
@@ -147,11 +177,18 @@ class Solver_heuristic2:
 			nearest_first = self.closest
 			solution_first = self.solution
 
+			if time.clock() >= self.max:
+				return(nearest, solution)
+
 			#search second half
 			self.closest = 0
 			self.solution = ""
 			self.curr_target = second_target
 			self.pre_process_2(second_half)
+
+			if time.clock() >= self.max:
+						return(nearest, solution)
+
 			if self.debug:
 				print("timeout " + str(time.clock() + self.timeout/(2 * self.num_searches)))
 				print("curr time " + str(time.clock()))
@@ -159,6 +196,9 @@ class Solver_heuristic2:
 			self.recursion(second_half, "", time.clock() + self.timeout/(2 * self.num_searches))
 			nearest_second = self.closest
 			solution_second = self.solution
+
+			if time.clock() >= self.max:
+				return(nearest, solution)
 
 			#combine and update
 			if self.multiply:
@@ -177,6 +217,10 @@ class Solver_heuristic2:
 				print("nearest: " + str(nearest_second))
 				print("solution: " + solution_second)
 				print("")
+
+			if time.clock() >= self.max:
+						return(nearest, solution)
+							
 			if abs(nearest_total - self.target) < abs(nearest - self.target):
 				nearest = nearest_total
 				solution = solution_total
@@ -188,7 +232,7 @@ class Solver_heuristic2:
 
 	def recursion(self, nums, currPath, timeout):
 	
-		if time.clock() >= timeout or self.curr_target == self.closest:
+		if time.clock() >= timeout or self.curr_target == self.closest or time.clock() >=self.max:
 			return
 
 		if len(nums) == 1:
@@ -201,7 +245,15 @@ class Solver_heuristic2:
 			self.searched.add(hash)
 
 		for i in range(0, len(nums)):
+
+			if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max:
+					return
+
 			for j in range(i+1, len(nums)):
+
+				if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max:
+					return
+
 				firstNum = nums[i]
 				secondNum = nums[j]
 
@@ -211,12 +263,16 @@ class Solver_heuristic2:
 					self.closest = newNum1
 					self.solution = newPath1
 				newList1 = nums[:]
+
+				if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max:
+					return
+
 				newList1.remove(firstNum)
 				newList1.remove(secondNum)
 				newList1.append(newNum1)
 				self.recursion(newList1, newPath1, timeout)
 
-				if time.clock()>= timeout or self.curr_target == self.closest:
+				if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max: 
 					return
 
 				if (firstNum != secondNum):
@@ -245,7 +301,7 @@ class Solver_heuristic2:
 								self.solution = newPath2
 							self.recursion(newList2, newPath2, timeout)
 
-				if time.clock()>= timeout or self.curr_target == self.closest:
+				if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max:
 					return
 
 				if (firstNum != 1 and secondNum != 1):
@@ -260,7 +316,7 @@ class Solver_heuristic2:
 						self.solution = newPath3
 					self.recursion(newList3, newPath3, timeout)
 
-				if time.clock() >= timeout or self.curr_target == self.closest:
+				if time.clock() >= timeout or self.curr_target == self.closest or time.clock() >=self.max:
 					return
 
 				if(secondNum != 0 and firstNum % secondNum == 0 and secondNum != 1):
@@ -277,7 +333,7 @@ class Solver_heuristic2:
 						self.recursion(newList4, newPath4, timeout)
 
 
-				if time.clock()>= timeout or self.curr_target == self.closest:
+				if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max:
 					return
 
 				elif(firstNum !=0 and secondNum % firstNum == 0 and firstNum != 1):
@@ -294,5 +350,5 @@ class Solver_heuristic2:
 						self.recursion(newList4, newPath4, timeout)
 
 					
-				if time.clock()>= timeout or self.curr_target == self.closest:
+				if time.clock()>= timeout or self.curr_target == self.closest or time.clock() >=self.max:
 					return

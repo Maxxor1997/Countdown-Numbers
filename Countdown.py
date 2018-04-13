@@ -65,9 +65,9 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     k = 25
     n = 10
-    t = 0.1
+    t = 0.5
     max_target = k**4
-    trials = 1000
+    trials = 100
     debug = False
 
     tester = Tester(n, k)
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     print("")
     test_cases = tester.gen_test_nums(n, k, trials)
     target_numbers = tester.gen_target_nums(max_target, trials)
-    #tester.base_trials(trials, test_cases, target_numbers, debug)
+    tester.base_trials(trials, test_cases, target_numbers, debug)
     print("")
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
     print("")
