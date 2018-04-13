@@ -54,8 +54,11 @@ class Solver_heuristic:
 		second_half = self.nums[self.first_half:]
 
 		self.pre_process(first_half, self.heuristic_targets)
-
-		self.recursion(first_half, "", self.start + self.timeout*self.time_ratio)
+		if (first_half == self.n/2):
+			to = 0.031
+		else:
+			to = 0.003
+		self.recursion(first_half, "", self.start + self.timeout - to)
 		# if self.debug:
 		# 	for tar in self.heuristic_targets:
 		# 		print(tar)
@@ -135,6 +138,10 @@ class Solver_heuristic:
 
 		for i in range(0, len(nums)):
 			for j in range(i+1, len(nums)):
+
+				if time.clock()>= timeout:
+					return
+
 				firstNum = nums[i]
 				secondNum = nums[j]
 
@@ -241,6 +248,10 @@ class Solver_heuristic:
 
 		for i in range(0, len(nums)):
 			for j in range(i+1, len(nums)):
+
+				if time.clock()>= timeout:
+					return
+
 				firstNum = nums[i]
 				secondNum = nums[j]
 

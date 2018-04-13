@@ -55,21 +55,7 @@ def use_Analysis(n, k):
     print("average time: " + str(average))
     analysis.visualize(all_solutions, k)
 
-if __name__ == "__main__":
-    # targets1 = use_DFS_hash()
-    # targets2 = use_DFS_marked()
-    # if len(targets1) != len(targets2):
-    # 	print ("discrepancy")
-    # for i in range (0, len(targets1)):
-    # 	if targets1[i] != targets2[i]:
-    # 		print ("discrepancy" + str(targets1[i]))
-    k = 25
-    n = 10
-    t = 0.1
-    max_target = k**3
-    trials = 1000
-    debug = False
-
+def test_suite(n, k, t, max_target, trials, debug, run_base):
     tester = Tester(n, k)
     print("n = " + str(n))
     print("k = " + str(k))
@@ -79,33 +65,47 @@ if __name__ == "__main__":
     print("")
     test_cases = tester.gen_test_nums(n, k, trials)
     target_numbers = tester.gen_target_nums(max_target, trials)
-    # tester.base_trials(trials, test_cases, target_numbers, debug)
-    # print("")
+
+    #15, 8, 15, 12, 11, 14
+    print(" Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved")
+    print("--------------------------------------------------------------------------------------------")
+
+    if (run_base):
+        tester.base_trials(trials, test_cases, target_numbers, debug)
+        print("")
+
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
-    print("")
     tester.heuristic_trials(trials, t, test_cases, 0, target_numbers, debug)
-    print("")
     tester.heuristic_trials(trials, t, test_cases, 1, target_numbers, debug)
-    print("")
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, True, debug)
-    print("")
     tester.heuristic2_trials(trials, t, test_cases, 1, target_numbers, True, debug)
-    print("")
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, False, debug)
-    print("")
     tester.heuristic2_trials(trials, t, test_cases, 1, target_numbers, False, debug)
-    print("")
     tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
-    print("")
     tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, False, debug)
-    print("")
     tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, True, debug)
-    print("")
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
-    print("")
     tester.heuristic4_trials(trials, t, test_cases, 1, target_numbers, True, False, debug)
-    print("")
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
+
+
+
+if __name__ == "__main__":
+    # targets1 = use_DFS_hash()
+    # targets2 = use_DFS_marked()
+    # if len(targets1) != len(targets2):
+    # 	print ("discrepancy")
+    # for i in range (0, len(targets1)):
+    # 	if targets1[i] != targets2[i]:
+    # 		print ("discrepancy" + str(targets1[i]))
+    n = 10
+    k = 25
+    t = 0.3
+    max_target = k**4
+    trials = 10
+    debug = False
+
+    test_suite(n, k, t, max_target, trials, debug, False)
 
 
