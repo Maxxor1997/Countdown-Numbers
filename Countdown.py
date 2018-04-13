@@ -65,9 +65,9 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     k = 25
     n = 10
-    t = 0.5
-    max_target = k**4
-    trials = 100
+    t = 0.1
+    max_target = k**3
+    trials = 1000
     debug = False
 
     tester = Tester(n, k)
@@ -79,8 +79,8 @@ if __name__ == "__main__":
     print("")
     test_cases = tester.gen_test_nums(n, k, trials)
     target_numbers = tester.gen_target_nums(max_target, trials)
-    tester.base_trials(trials, test_cases, target_numbers, debug)
-    print("")
+    # tester.base_trials(trials, test_cases, target_numbers, debug)
+    # print("")
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
     print("")
     tester.heuristic_trials(trials, t, test_cases, 0, target_numbers, debug)
@@ -95,9 +95,17 @@ if __name__ == "__main__":
     print("")
     tester.heuristic2_trials(trials, t, test_cases, 1, target_numbers, False, debug)
     print("")
-    tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, debug)
+    tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
     print("")
-    tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, debug)
+    tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, False, debug)
+    print("")
+    tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, True, debug)
+    print("")
+    tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
+    print("")
+    tester.heuristic4_trials(trials, t, test_cases, 1, target_numbers, True, False, debug)
+    print("")
+    tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
 
 

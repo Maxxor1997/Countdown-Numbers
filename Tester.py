@@ -205,14 +205,14 @@ class Tester:
 			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 
-	def heuristic3_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, debug):
+	def heuristic3_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, adjust_offset, debug):
 		
 		solved = 0
 		off = 0
 		time_solved = 0
 		time_unsolved = 0
-		if multiply:
-			print("Starting Heuristic 3 Trials with Offset " + str(offset))
+		if adjust_offset:
+			print("Starting Heuristic 3 Trials with Adjusted Offset")
 		else:
 			print("Starting Heuristic 3 Trials with Offset " + str(offset))
 		for i in range(trials):
@@ -224,7 +224,51 @@ class Tester:
 			if debug:
 				print("Target: " + str(target))
 			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 1, multiply, debug)
-			(closest, solution) = solver.heuristic_search_3()
+			(closest, solution) = solver.heuristic_search_3(adjust_offset)
+			elapsed = time.clock() - start
+			if (closest == target):
+				solved = solved + 1
+				time_solved = time_solved + elapsed
+			else:
+				off = off + abs(closest - target)
+				time_unsolved = time_unsolved + elapsed
+			if debug:
+				print("Closest: " + str(closest) + "( " + str(abs(target - closest)) + " off)")
+				print(solution)
+				print("")
+
+		print("Percentage Solved: " + str(100 * solved / trials) + "%")
+		print("Average Error: " + str(off/trials))
+		print("Total Time: " + str(time_solved + time_unsolved))
+		if solved==0:
+			print("Average Time for Solved Case: " + str(0))
+		else:
+			print("Average Time for Solved Case: " + str(time_solved/solved))
+		if trials-solved==0:
+			print("Average Time for Unsolved Case: " + str(0))
+		else:
+			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
+
+	def heuristic4_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, adjust_offset, debug):
+		
+		solved = 0
+		off = 0
+		time_solved = 0
+		time_unsolved = 0
+		if adjust_offset:
+			print("Starting Heuristic 4 Trials with Adjusted Offset")
+		else:
+			print("Starting Heuristic 4 Trials with Offset " + str(offset))
+		for i in range(trials):
+			start = time.clock()
+			nums = test_cases[i]
+			if debug:
+				print(nums)
+			target = target_numbers[i]
+			if debug:
+				print("Target: " + str(target))
+			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 1, multiply, debug)
+			(closest, solution) = solver.heuristic_search_4(adjust_offset)
 			elapsed = time.clock() - start
 			if (closest == target):
 				solved = solved + 1
