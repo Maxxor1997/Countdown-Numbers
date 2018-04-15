@@ -76,16 +76,11 @@ def test_suite(n, k, t, max_target, trials, debug, run_base):
 
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
     tester.heuristic_trials(trials, t, test_cases, 0, target_numbers, debug)
-    tester.heuristic_trials(trials, t, test_cases, 1, target_numbers, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, True, debug)
-    tester.heuristic2_trials(trials, t, test_cases, 1, target_numbers, True, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, False, debug)
-    tester.heuristic2_trials(trials, t, test_cases, 1, target_numbers, False, debug)
     tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
-    tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, False, debug)
     tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, True, debug)
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
-    tester.heuristic4_trials(trials, t, test_cases, 1, target_numbers, True, False, debug)
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
 
@@ -101,11 +96,16 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     n = 10
     k = 25
-    t = 0.3
-    max_target = k**4
-    trials = 10
+    t = 3
+    max_target = k**3
+    trials = 1000
     debug = False
 
-    test_suite(n, k, t, max_target, trials, debug, False)
+    lll = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3]
+    for i in lll:  
+        test_suite(n, k, i, max_target, trials, debug, False)
+    max_target = k**4
+    for i in lll:  
+        test_suite(n, k, i, max_target, trials, debug, False)
 
 
