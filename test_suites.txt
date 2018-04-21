@@ -363,6 +363,80 @@ Number of trials: 1000
 
  Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved
 --------------------------------------------------------------------------------------------
-xxxxxxxxxx|Brute Force     |5.80%   |434.21         |967.083s    |0.432s      |1.000s
-xxxxxxxxxx|Heu 1, Off 0    |10.50%  |5724.34        |997.773s    |1.000s      |0.998s
-xxxxxxxxxx
+xxxxxxxxxx|Brute Force     |6.80%   |128.27         |962.527s    |0.449s      |1.000s
+xxxxxxxxxx|Heu 1, Off 0    |10.10%  |5538.57        |998.858s    |1.001s      |0.999s
+xxxxxxxxxx|Heu 2, M, Off 0 |0.70%   |111.31         |996.893s    |0.554s      |1.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |1.90%   |28572.03       |989.355s    |0.439s      |1.000s
+xxxxxxxxxx|Heu 3, Off 0    |35.10%  |6562.43        |747.767s    |0.281s      |1.000s
+xxxxxxxxxx|Heu 3, Adj Off  |24.40%  |77777.29       |794.054s    |0.156s      |1.000s
+xxxxxxxxxx|Heu 4, Off 0    |48.70%  |229.66         |632.760s    |0.246s      |1.000s
+xxxxxxxxxx|Heu 4, Adj Off  |44.40%  |78446.88       |657.828s    |0.229s      |1.000s
+
+n = 10
+k = 25
+Timeout = 2s
+Max Target is 390625
+Number of trials: 1000
+
+ Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved
+--------------------------------------------------------------------------------------------
+xxxxxxxxxx|Brute Force     |11.40%  |300.74         |1862.145s   |0.791s      |2.000s
+xxxxxxxxxx|Heu 1, Off 0    |15.50%  |4751.38        |1942.602s   |1.937s      |1.944s
+xxxxxxxxxx|Heu 2, M, Off 0 |0.90%   |272.68         |1985.730s   |0.413s      |2.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |2.30%   |23524.17       |1966.809s   |0.556s      |2.000s
+xxxxxxxxxx|Heu 3, Off 0    |43.00%  |2170.16        |1335.455s   |0.455s      |2.000s
+xxxxxxxxxx|Heu 3, Adj Off  |27.00%  |68674.68       |1532.359s   |0.268s      |2.000s
+xxxxxxxxxx|Heu 4, Off 0    |56.90%  |310.52         |1039.269s   |0.311s      |2.001s
+xxxxxxxxxx|Heu 4, Adj Off  |52.60%  |66750.27       |1111.606s   |0.311s      |2.000s
+
+n = 10
+k = 25
+Timeout = 3s
+Max Target is 390625
+Number of trials: 1000
+
+Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved
+--------------------------------------------------------------------------------------------
+xxxxxxxxxx|Brute Force     |13.60%  |34.37          |2750.641s   |1.166s      |3.000s
+xxxxxxxxxx|Heu 1, Off 0    |20.80%  |3861.02        |2638.287s   |2.609s      |2.646s
+xxxxxxxxxx|Heu 2, M, Off 0 |0.70%   |111.33         |2981.830s   |0.402s      |3.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |2.20%   |22226.29       |2946.908s   |0.586s      |3.000s
+xxxxxxxxxx|Heu 3, Off 0    |46.30%  |783.71         |1902.398s   |0.629s      |3.000s
+xxxxxxxxxx|Heu 3, Adj Off  |28.70%  |60561.27       |2254.425s   |0.402s      |3.000s
+xxxxxxxxxx|Heu 4, Off 0    |57.20%  |85.56          |1477.572s   |0.337s      |3.001s
+xxxxxxxxxx|Heu 4, Adj Off  |52.50%  |59836.61       |1636.575s   |0.403s      |3.000s
+
+n = 10
+k = 25
+Timeout = 5s
+Max Target is 15625
+Number of trials: 1000
+
+ Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved
+--------------------------------------------------------------------------------------------
+xxxxxxxxxx|Brute Force     |94.60%  |0.07           |1091.129s   |0.868s      |5.000s
+xxxxxxxxxx|Heu 1, Off 0    |86.00%  |7.54           |4708.492s   |4.704s      |4.736s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.60%   |19.88          |4879.747s   |0.374s      |5.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |47.50%  |38.58          |2995.965s   |0.781s      |5.000s
+xxxxxxxxxx|Heu 3, Off 0    |83.90%  |2.80           |948.000s    |0.170s      |5.000s
+xxxxxxxxxx|Heu 3, Adj Off  |73.30%  |1436.53        |1526.814s   |0.262s      |5.000s
+xxxxxxxxxx|Heu 4, Off 0    |83.80%  |2.97           |920.974s    |0.132s      |5.000s
+xxxxxxxxxx|Heu 4, Adj Off  |75.80%  |1332.18        |1353.898s   |0.190s      |5.000s
+
+n = 10
+k = 25
+Timeout = 5s
+Max Target is 390625
+Number of trials: 1000
+
+ Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved
+--------------------------------------------------------------------------------------------
+xxxxxxxxxx|Brute Force     |18.60%  |19.73          |4404.999s   |1.801s      |5.000s
+xxxxxxxxxx|Heu 1, Off 0    |23.20%  |4144.20        |4694.940s   |4.617s      |4.718s
+xxxxxxxxxx|Heu 2, M, Off 0 |0.90%   |103.10         |4958.613s   |0.400s      |5.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |2.30%   |21151.97       |4906.307s   |0.926s      |5.000s
+xxxxxxxxxx|Heu 3, Off 0    |49.70%  |1701.45        |2914.208s   |0.803s      |5.000s
+xxxxxxxxxx|Heu 3, Adj Off  |33.60%  |60649.25       |3528.947s   |0.622s      |5.000s
+xxxxxxxxxx|Heu 4, Off 0    |56.70%  |275.85         |2361.508s   |0.346s      |5.001s
+xxxxxxxxxx|Heu 4, Adj Off  |54.70%  |55544.92       |2516.645s   |0.460s      |5.000s
+

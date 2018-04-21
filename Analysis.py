@@ -68,6 +68,7 @@ class Analysis:
 	def get_analysis_5(self, k):
 		all_solutions = dict()
 		for a in range(1, k+1):
+			print(a)
 			for b in range(a, k+1):
 				for c in range(b, k+1):
 					for d in range (c, k+1):

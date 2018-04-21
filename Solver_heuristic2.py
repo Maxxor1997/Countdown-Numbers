@@ -49,7 +49,7 @@ class Solver_heuristic2:
 
 				if adjust_offset:
 					for j in range(self.n):
-						if i > self.target**(j/self.n):
+						if self.target**(j/self.n) < i:
 							self.first_half = j
 
 				while time.clock() < self.max:
@@ -150,7 +150,7 @@ class Solver_heuristic2:
 					else:
 						first_target = i
 						second_target = self.target / i
-						
+
 					if adjust_offset:
 						for j in range(self.n):
 							if i > self.target**(j/self.n):

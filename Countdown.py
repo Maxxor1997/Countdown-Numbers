@@ -55,16 +55,14 @@ def use_Analysis(n, k):
     print("average time: " + str(average))
     analysis.visualize(all_solutions, k)
 
-def test_suite(n, k, t, max_target, trials, debug, run_base):
-    tester = Tester(n, k)
+def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_numbers, run_base):
+
     print("n = " + str(n))
     print("k = " + str(k))
     print("Timeout = " + str(t) + "s")
     print("Max Target is " + str(max_target))
     print("Number of trials: " + str(trials))
     print("")
-    test_cases = tester.gen_test_nums(n, k, trials)
-    target_numbers = tester.gen_target_nums(max_target, trials)
 
     #15, 8, 15, 12, 11, 14
     print(" Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved")
@@ -84,8 +82,6 @@ def test_suite(n, k, t, max_target, trials, debug, run_base):
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
 
-
-
 if __name__ == "__main__":
     # targets1 = use_DFS_hash()
     # targets2 = use_DFS_marked()
@@ -96,16 +92,23 @@ if __name__ == "__main__":
     # 		print ("discrepancy" + str(targets1[i]))
     n = 10
     k = 25
-    t = 3
+    t = 5
     max_target = k**3
     trials = 1000
     debug = False
 
-    lll = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3]
-    for i in lll:  
-        test_suite(n, k, i, max_target, trials, debug, False)
+    tester = Tester(n, k)
+    test_cases = tester.gen_test_nums(n, k, trials)
+    target_numbers = tester.gen_target_nums(max_target, trials)
+
+    timeouts = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+
+    for time in timeouts:
+        test_suite(tester, n, k, time, max_target, trials, debug, test_cases, target_numbers, False)
+
     max_target = k**4
-    for i in lll:  
-        test_suite(n, k, i, max_target, trials, debug, False)
+    
+    for time in timeouts:
+        test_suite(tester, n, k, time, max_target, trials, debug, test_cases, target_numbers, False)
 
 

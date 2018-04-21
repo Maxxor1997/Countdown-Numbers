@@ -145,7 +145,7 @@ class Tester:
 			target = target_numbers[i]
 			if debug:
 				print("Target: " + str(target))
-			solver = Solver_heuristic(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 500, 0.9, debug)
+			solver = Solver_heuristic(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 200, 0.9, debug)
 			(closest, solution, found_size) = solver.heuristic_search()
 			found_total = found_total + found_size
 			elapsed = time.clock() - start
