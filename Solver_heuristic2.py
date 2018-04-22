@@ -156,6 +156,7 @@ class Solver_heuristic2:
 							if i > self.target**(j/self.n):
 								self.first_half = j
 
+
 					if time.clock() >= self.max:
 						return(nearest, solution)
 

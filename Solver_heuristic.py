@@ -50,63 +50,70 @@ class Solver_heuristic:
 		return sum
 
 	def heuristic_search(self):
-		first_half = self.nums[:self.first_half]
-		second_half = self.nums[self.first_half:]
-
-		self.pre_process(first_half, self.heuristic_targets)
-		if (first_half == self.n/2):
-			to = 0.031
-		else:
-			to = 0.003
-		self.recursion(first_half, "", self.start + self.timeout - to)
-		# if self.debug:
-		# 	for tar in self.heuristic_targets:
-		# 		print(tar)
-		# 		print(self.heuristic_targets[tar])
-
-		self.found = dict()
-
-		self.pre_process_2(second_half, self.most_likely)
-		self.recursion_2(second_half, "", self.start + self.timeout)
-		# if self.debug:
-		# 	for f in self.found:
-		# 		print(f)
-		# 		print(self.found[f])
-		found_size = len(self.found)
 
 		final_closest = self.nums[0]
 		final_solution = str(self.nums[0])
-		for tar in self.heuristic_targets:
-			(closest, solution, likely) = self.heuristic_targets[tar]
-			if likely in self.found:
-				newNum1 = closest + likely
-				if abs(newNum1 - self.target) < abs(final_closest - self.target):
-					final_closest = newNum1
-					final_solution = solution + " + " + self.found[likely]
-				if closest >= likely:
-					newNum2 = closest - likely
-					if abs(newNum2 - self.target) < abs(final_closest - self.target):
-						final_closest = newNum2
-						final_solution = solution + " - " + self.found[likely]
-				else:
-					newNum2 = likely - closest
-					if abs(newNum2 - self.target) < abs(final_closest - self.target):
-						final_closest = newNum2
-						final_solution = self.found[likely] + " - " + solution
-				newNum3 = closest * likely
-				if abs(newNum3 - self.target) < abs(final_closest - self.target):
-					final_closest = newNum3
-					final_solution = solution + " * " + self.found[likely]
-				if likely != 0 and closest % likely == 0:
-					newNum4 = closest/likely
-					if abs(newNum4 - self.target) < abs(final_closest - self.target):
-						final_closest = newNum4
-						final_solution = solution + " / " + self.found[likely]
-				elif closest != 0 and likely % closest == 0:
-					newNum4 = likely/closest
-					if abs(newNum4 - self.target) < abs(final_closest - self.target):
-						final_closest = newNum4
-						final_solution = self.found[likely] + " / " + solution
+		found_size = 0
+
+		while time.clock()<self.start+self.timeout:
+			random.shuffle(self.nums)
+			first_half = self.nums[:self.first_half]
+			second_half = self.nums[self.first_half:]
+
+			self.pre_process(first_half, self.heuristic_targets)
+			if (first_half == self.n/2):
+				to = 0.031
+			else:
+				to = 0.003
+			self.recursion(first_half, "", self.start + self.timeout - to)
+			# if self.debug:
+			# 	for tar in self.heuristic_targets:
+			# 		print(tar)
+			# 		print(self.heuristic_targets[tar])
+
+
+			self.found = dict()
+
+			self.pre_process_2(second_half, self.most_likely)
+			self.recursion_2(second_half, "", self.start + self.timeout)
+			# if self.debug:
+			# 	for f in self.found:
+			# 		print(f)
+			# 		print(self.found[f])
+
+			found_size = len(self.found)
+
+			for tar in self.heuristic_targets:
+				(closest, solution, likely) = self.heuristic_targets[tar]
+				if likely in self.found:
+					newNum1 = closest + likely
+					if abs(newNum1 - self.target) < abs(final_closest - self.target):
+						final_closest = newNum1
+						final_solution = solution + " + " + self.found[likely]
+					if closest >= likely:
+						newNum2 = closest - likely
+						if abs(newNum2 - self.target) < abs(final_closest - self.target):
+							final_closest = newNum2
+							final_solution = solution + " - " + self.found[likely]
+					else:
+						newNum2 = likely - closest
+						if abs(newNum2 - self.target) < abs(final_closest - self.target):
+							final_closest = newNum2
+							final_solution = self.found[likely] + " - " + solution
+					newNum3 = closest * likely
+					if abs(newNum3 - self.target) < abs(final_closest - self.target):
+						final_closest = newNum3
+						final_solution = solution + " * " + self.found[likely]
+					if likely != 0 and closest % likely == 0:
+						newNum4 = closest/likely
+						if abs(newNum4 - self.target) < abs(final_closest - self.target):
+							final_closest = newNum4
+							final_solution = solution + " / " + self.found[likely]
+					elif closest != 0 and likely % closest == 0:
+						newNum4 = likely/closest
+						if abs(newNum4 - self.target) < abs(final_closest - self.target):
+							final_closest = newNum4
+							final_solution = self.found[likely] + " / " + solution
 
 		return(final_closest, final_solution, found_size)
 

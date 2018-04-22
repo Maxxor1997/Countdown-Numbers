@@ -72,12 +72,13 @@ def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_nu
         tester.base_trials(trials, test_cases, target_numbers, debug)
         print("")
 
+    
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
     tester.heuristic_trials(trials, t, test_cases, 0, target_numbers, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, True, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, False, debug)
     tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
-    tester.heuristic3_trials(trials, t, test_cases, 1, target_numbers, True, True, debug)
+    tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
@@ -93,22 +94,38 @@ if __name__ == "__main__":
     n = 10
     k = 25
     t = 5
-    max_target = k**3
+    max_target_3 = k**3
+    max_target_4 = k**4
     trials = 1000
     debug = False
 
     tester = Tester(n, k)
     test_cases = tester.gen_test_nums(n, k, trials)
-    target_numbers = tester.gen_target_nums(max_target, trials)
+    for test in test_cases:
+        print(test)
+    target_numbers_3 = tester.gen_target_nums(max_target_3, trials)
+    print("t3: ")
+    for t3 in target_numbers_3:
+        print(t3)
+    target_numbers_4 = tester.gen_target_nums(max_target_4, trials)
+    print("t4: ")
+    for t4 in target_numbers_4:
+        print(t4)
 
     timeouts = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
     for time in timeouts:
-        test_suite(tester, n, k, time, max_target, trials, debug, test_cases, target_numbers, False)
-
-    max_target = k**4
+        test_suite(tester, n, k, time, max_target_3, trials, debug, test_cases, target_numbers_3, False)
     
     for time in timeouts:
-        test_suite(tester, n, k, time, max_target, trials, debug, test_cases, target_numbers, False)
+        test_suite(tester, n, k, time, max_target_4, trials, debug, test_cases, target_numbers_4, False)
+
+    timeouts = [2, 3, 5, 10]
+    trials = 100
+    for time in timeouts:
+        test_suite(tester, n, k, time, max_target_3, trials, debug, test_cases, target_numbers_3, False)
+    
+    for time in timeouts:
+        test_suite(tester, n, k, time, max_target_4, trials, debug, test_cases, target_numbers_4, False)
 
 
