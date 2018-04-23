@@ -74,13 +74,14 @@ class Tester:
 			print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 	def brute_force_trials(self, trials, timeout, test_cases, target_numbers, debug):
+		print("A")
 		solved = 0
 		off = 0
 		time_solved = 0
 		time_unsolved = 0
 		for i in range(trials):
-			if i%(trials/10)==0:
-				print("x", end='', flush=True)
+			#if i%(trials/10)==0:
+				#print("x", end='', flush=True)
 			start = time.clock()
 			nums = test_cases[i]
 			if debug:
@@ -91,6 +92,7 @@ class Tester:
 			solver = Solver(self.n, target, nums, timeout, debug)
 			(closest, solution) = solver.brute_force()
 			elapsed = time.clock() - start
+			print(elapsed, flush=True)
 			if (closest == target):
 				time_solved = time_solved + elapsed
 				solved = solved + 1
@@ -115,29 +117,29 @@ class Tester:
 		# 	print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
 		#15, 8, 15, 12, 14, 11
-		ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
-		ae = str("{0:.2f}".format(off/trials))
-		tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
-		if solved == 0:
-			asc = str(0) + "s"
-		else:
-			asc = str("{0:.3f}".format(time_solved/solved)) + "s"
-		if trials-solved == 0:
-			auc = str(0) + "s"
-		else:
-			auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
-		print("|Brute Force     |" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
+		# ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
+		# ae = str("{0:.2f}".format(off/trials))
+		# tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
+		# if solved == 0:
+		# 	asc = str(0) + "s"
+		# else:
+		# 	asc = str("{0:.3f}".format(time_solved/solved)) + "s"
+		# if trials-solved == 0:
+		# 	auc = str(0) + "s"
+		# else:
+		# 	auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
+		# print("|Brute Force     |" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
 
 	def heuristic_trials(self, trials, timeout, test_cases, offset, target_numbers, debug):
-
+		print("B")
 		solved = 0
 		off = 0
 		found_total = 0
 		time_solved = 0
 		time_unsolved = 0
 		for i in range(trials):
-			if i%(trials/10)==0:
-				print("x", end='', flush=True)
+			#if i%(trials/10)==0:
+				#print("x", end='', flush=True)
 			start = time.clock()
 			nums = test_cases[i]
 			if debug:
@@ -149,6 +151,7 @@ class Tester:
 			(closest, solution, found_size) = solver.heuristic_search()
 			found_total = found_total + found_size
 			elapsed = time.clock() - start
+			print(elapsed, flush=True)
 			if (closest == target):
 				solved = solved + 1
 				time_solved = time_solved + elapsed
@@ -173,30 +176,32 @@ class Tester:
 		# else:
 		# 	print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-		name = "Heu 1, Off " + str(offset)
-		ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
-		ae = str("{0:.2f}".format(off/trials))
-		tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
-		if solved == 0:
-			asc = str(0) + "s"
-		else:
-			asc = str("{0:.3f}".format(time_solved/solved)) + "s"
-		if trials-solved == 0:
-			auc = str(0) + "s"
-		else:
-			auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
-		print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
+		# name = "Heu 1, Off " + str(offset)
+		# ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
+		# ae = str("{0:.2f}".format(off/trials))
+		# tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
+		# if solved == 0:
+		# 	asc = str(0) + "s"
+		# else:
+		# 	asc = str("{0:.3f}".format(time_solved/solved)) + "s"
+		# if trials-solved == 0:
+		# 	auc = str(0) + "s"
+		# else:
+		# 	auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
+		# print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
 
 
 	def heuristic2_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, debug):
-	
+		if multiply:
+			print("C")
+		else: print("D")
 		solved = 0
 		off = 0
 		time_solved = 0
 		time_unsolved = 0
 		for i in range(trials):
-			if i%(trials/10)==0:
-				print("x", end='', flush=True)
+			#if i%(trials/10)==0:
+				#print("x", end='', flush=True)
 			start = time.clock()
 			nums = test_cases[i]
 			if debug:
@@ -207,6 +212,7 @@ class Tester:
 			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 10, multiply, debug)
 			(closest, solution) = solver.heuristic_search_2()
 			elapsed = time.clock() - start
+			print(elapsed, flush=True)
 			if (closest == target):
 				solved = solved + 1
 				time_solved = time_solved + elapsed
@@ -231,34 +237,38 @@ class Tester:
 		# else:
 		# 	print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-		if multiply:
-			x = "M"
-		else:
-			x = "A"
-		name = "Heu 2, " + x + ", Off " + str(offset)
-		ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
-		ae = str("{0:.2f}".format(off/trials))
-		tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
-		if solved == 0:
-			asc = str(0) + "s"
-		else:
-			asc = str("{0:.3f}".format(time_solved/solved)) + "s"
-		if trials-solved == 0:
-			auc = str(0) + "s"
-		else:
-			auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
-		print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
+		# if multiply:
+		# 	x = "M"
+		# else:
+		# 	x = "A"
+
+		# name = "Heu 2, " + x + ", Off " + str(offset)
+		# ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
+		# ae = str("{0:.2f}".format(off/trials))
+		# tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
+		# if solved == 0:
+		# 	asc = str(0) + "s"
+		# else:
+		# 	asc = str("{0:.3f}".format(time_solved/solved)) + "s"
+		# if trials-solved == 0:
+		# 	auc = str(0) + "s"
+		# else:
+		# 	auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
+		# print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
 
 
 	def heuristic3_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, adjust_offset, debug):
-		
+		if adjust_offset:
+			print("F")
+		else:
+			print("E")
 		solved = 0
 		off = 0
 		time_solved = 0
 		time_unsolved = 0
 		for i in range(trials):
-			if i%(trials/10)==0:
-				print("x", end='', flush=True)
+			#if i%(trials/10)==0:
+				#print("x", end='', flush=True)
 			start = time.clock()
 			nums = test_cases[i]
 			if debug:
@@ -269,6 +279,7 @@ class Tester:
 			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 1, multiply, debug)
 			(closest, solution) = solver.heuristic_search_3(adjust_offset)
 			elapsed = time.clock() - start
+			print(elapsed, flush=True)
 			if (closest == target):
 				solved = solved + 1
 				time_solved = time_solved + elapsed
@@ -292,33 +303,37 @@ class Tester:
 		# else:
 		# 	print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-		if adjust_offset:
-			name = "Heu 3, Adj Off"
-		else:
-			name = "Heu 3, " + "Off " + str(offset)
-		ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
-		ae = str("{0:.2f}".format(off/trials))
-		tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
-		if solved == 0:
-			asc = str(0) + "s"
-		else:
-			asc = str("{0:.3f}".format(time_solved/solved)) + "s"
-		if trials-solved == 0:
-			auc = str(0) + "s"
-		else:
-			auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
-		print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
+		# if adjust_offset:
+		# 	name = "Heu 3, Adj Off"
+		# else:
+		# 	name = "Heu 3, " + "Off " + str(offset)
+		# ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
+		# ae = str("{0:.2f}".format(off/trials))
+		# tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
+		# if solved == 0:
+		# 	asc = str(0) + "s"
+		# else:
+		# 	asc = str("{0:.3f}".format(time_solved/solved)) + "s"
+		# if trials-solved == 0:
+		# 	auc = str(0) + "s"
+		# else:
+		# 	auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
+		# print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
 
 	def heuristic4_trials(self, trials, timeout, test_cases, offset, target_numbers, multiply, adjust_offset, debug):
-		
+		if adjust_offset:
+			print("H")
+		else:
+			print("G")
+
 		solved = 0
 		off = 0
 		time_solved = 0
 		time_unsolved = 0
 
 		for i in range(trials):
-			if i%(trials/10)==0:
-				print("x", end='', flush=True)
+			#if i%(trials/10)==0:
+				#print("x", end='', flush=True)
 			start = time.clock()
 			nums = test_cases[i]
 			if debug:
@@ -329,6 +344,7 @@ class Tester:
 			solver = Solver_heuristic2(self.n, int(self.n / 2) + offset, self.k, target, nums, timeout, 1, multiply, debug)
 			(closest, solution) = solver.heuristic_search_4(adjust_offset)
 			elapsed = time.clock() - start
+			print(elapsed, flush=True)
 			if (closest == target):
 				solved = solved + 1
 				time_solved = time_solved + elapsed
@@ -352,22 +368,22 @@ class Tester:
 		# else:
 		# 	print("Average Time for Unsolved Case: " + str(time_unsolved/(trials - solved)))
 
-		if adjust_offset:
-			name = "Heu 4, Adj Off"
-		else:
-			name = "Heu 4, " + "Off " + str(offset)
-		ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
-		ae = str("{0:.2f}".format(off/trials))
-		tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
-		if solved == 0:
-			asc = str(0) + "s"
-		else:
-			asc = str("{0:.3f}".format(time_solved/solved)) + "s"
-		if trials-solved == 0:
-			auc = str(0) + "s"
-		else:
-			auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
-		print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
+		# if adjust_offset:
+		# 	name = "Heu 4, Adj Off"
+		# else:
+		# 	name = "Heu 4, " + "Off " + str(offset)
+		# ps = str("{0:.2f}".format(100 * solved / trials)) + "%"
+		# ae = str("{0:.2f}".format(off/trials))
+		# tt = str("{0:.3f}".format(time_solved + time_unsolved)) + "s"
+		# if solved == 0:
+		# 	asc = str(0) + "s"
+		# else:
+		# 	asc = str("{0:.3f}".format(time_solved/solved)) + "s"
+		# if trials-solved == 0:
+		# 	auc = str(0) + "s"
+		# else:
+		# 	auc = str("{0:.3f}".format(time_unsolved/(trials - solved))) + "s"
+		# print("|" + name + (16-len(name))*" " + "|" + ps + (8-len(ps))*" " + "|" + ae + (15-len(ae))*" " + "|" + tt + (12-len(tt))*" " + "|" + asc + (12-len(asc))*" " + "|" + auc)
 
 
 	def heuristic_trials_test(self, trials, timeout):

@@ -115,6 +115,9 @@ class Solver_heuristic:
 							final_closest = newNum4
 							final_solution = self.found[likely] + " / " + solution
 
+			if final_closest == self.target:
+				break
+
 		return(final_closest, final_solution, found_size)
 
 

@@ -1,0 +1,139 @@
+0.1
+xxxxxxxxxx|Brute Force     |17.00%  |5.77           |90.469s     |0.044s      |0.100s
+xxxxxxxxxx|Heu 1, Off 0    |35.90%  |175.19         |100.558s    |0.101s      |0.101s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.50%   |24.74          |98.424s     |0.036s      |0.100s
+xxxxxxxxxx|Heu 2, A, Off 0 |9.30%   |105.04         |94.684s     |0.043s      |0.100s
+xxxxxxxxxx|Heu 3, Off 0    |61.30%  |32.90          |53.881s     |0.025s      |0.100s
+xxxxxxxxxx|Heu 3, Adj Off  |54.00%  |2917.31        |58.760s     |0.024s      |0.100s
+xxxxxxxxxx|Heu 4, Off 0    |61.60%  |41.38          |54.298s     |0.026s      |0.100s
+xxxxxxxxxx|Heu 4, Adj Off  |57.20%  |2806.56        |57.337s     |0.025s      |0.100s
+
+0.2
+xxxxxxxxxx|Brute Force     |30.60%  |2.40           |163.096s    |0.079s      |0.200s
+xxxxxxxxxx|Heu 1, Off 0    |48.90%  |89.75          |200.559s    |0.201s      |0.201s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.90%   |21.82          |197.146s    |0.049s      |0.200s
+xxxxxxxxxx|Heu 2, A, Off 0 |13.30%  |48.12          |183.168s    |0.073s      |0.200s
+xxxxxxxxxx|Heu 3, Off 0    |66.80%  |7.19           |90.946s     |0.037s      |0.200s
+xxxxxxxxxx|Heu 3, Adj Off  |59.80%  |2488.28        |101.694s    |0.036s      |0.200s
+xxxxxxxxxx|Heu 4, Off 0    |68.00%  |5.86           |88.792s     |0.036s      |0.200s
+xxxxxxxxxx|Heu 4, Adj Off  |62.50%  |2497.18        |96.901s     |0.035s      |0.200s
+
+0.3
+xxxxxxxxxx|Brute Force     |37.40%  |1.69           |229.389s    |0.111s      |0.300s
+xxxxxxxxxx|Heu 1, Off 0    |63.70%  |42.58          |300.555s    |0.301s      |0.301s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.20%   |21.54          |295.403s    |0.090s      |0.300s
+xxxxxxxxxx|Heu 2, A, Off 0 |17.20%  |37.23          |268.097s    |0.114s      |0.300s
+xxxxxxxxxx|Heu 3, Off 0    |70.20%  |5.75           |120.430s    |0.044s      |0.300s
+xxxxxxxxxx|Heu 3, Adj Off  |60.10%  |2313.24        |144.087s    |0.041s      |0.300s
+xxxxxxxxxx|Heu 4, Off 0    |71.20%  |4.62           |122.570s    |0.051s      |0.300s
+xxxxxxxxxx|Heu 4, Adj Off  |62.40%  |2406.50        |141.526s    |0.046s      |0.300s
+
+0.4
+xxxxxxxxxx|Brute Force     |37.10%  |1.63           |306.019s    |0.147s      |0.400s
+xxxxxxxxxx|Heu 1, Off 0    |62.50%  |54.09          |400.644s    |0.401s      |0.401s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.70%   |22.02          |395.249s    |0.119s      |0.400s
+xxxxxxxxxx|Heu 2, A, Off 0 |18.70%  |31.41          |354.050s    |0.154s      |0.400s
+xxxxxxxxxx|Heu 3, Off 0    |72.40%  |4.66           |148.909s    |0.053s      |0.400s
+xxxxxxxxxx|Heu 3, Adj Off  |62.10%  |2114.73        |183.261s    |0.051s      |0.400s
+xxxxxxxxxx|Heu 4, Off 0    |74.30%  |4.08           |143.825s    |0.055s      |0.400s
+xxxxxxxxxx|Heu 4, Adj Off  |67.70%  |2067.47        |164.359s    |0.052s      |0.400s
+
+0.5
+xxxxxxxxxx|Brute Force     |51.40%  |0.90           |334.764s    |0.179s      |0.500s
+xxxxxxxxxx|Heu 1, Off 0    |71.80%  |26.44          |500.556s    |0.501s      |0.501s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.80%   |22.08          |493.126s    |0.117s      |0.500s
+xxxxxxxxxx|Heu 2, A, Off 0 |23.50%  |28.86          |422.037s    |0.168s      |0.500s
+xxxxxxxxxx|Heu 3, Off 0    |74.00%  |4.20           |173.222s    |0.058s      |0.500s
+xxxxxxxxxx|Heu 3, Adj Off  |63.40%  |2045.55        |217.744s    |0.055s      |0.500s
+xxxxxxxxxx|Heu 4, Off 0    |76.10%  |3.65           |170.083s    |0.066s      |0.500s
+xxxxxxxxxx|Heu 4, Adj Off  |66.80%  |1981.94        |201.640s    |0.053s      |0.500s
+
+0.6
+xxxxxxxxxx|Brute Force     |52.80%  |0.72           |390.961s    |0.204s      |0.600s
+xxxxxxxxxx|Heu 1, Off 0    |74.80%  |36.45          |600.556s    |0.601s      |0.601s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.80%   |22.12          |591.684s    |0.137s      |0.600s
+xxxxxxxxxx|Heu 2, A, Off 0 |24.30%  |26.72          |503.409s    |0.202s      |0.600s
+xxxxxxxxxx|Heu 3, Off 0    |75.60%  |4.00           |198.569s    |0.069s      |0.600s
+xxxxxxxxxx|Heu 3, Adj Off  |63.50%  |1965.89        |258.243s    |0.062s      |0.600s
+xxxxxxxxxx|Heu 4, Off 0    |77.60%  |3.31           |194.442s    |0.077s      |0.600s
+xxxxxxxxxx|Heu 4, Adj Off  |68.60%  |1948.43        |228.441s    |0.058s      |0.600s
+
+0.7
+xxxxxxxxxx|Brute Force     |54.80%  |0.74           |438.667s    |0.223s      |0.700s
+xxxxxxxxxx|Heu 1, Off 0    |74.60%  |29.96          |700.595s    |0.701s      |0.701s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.30%   |22.07          |689.006s    |0.221s      |0.700s
+xxxxxxxxxx|Heu 2, A, Off 0 |25.20%  |26.59          |583.028s    |0.236s      |0.700s
+xxxxxxxxxx|Heu 3, Off 0    |76.50%  |3.43           |226.531s    |0.081s      |0.700s
+xxxxxxxxxx|Heu 3, Adj Off  |64.10%  |1865.76        |290.733s    |0.062s      |0.700s
+xxxxxxxxxx|Heu 4, Off 0    |77.30%  |3.20           |221.650s    |0.081s      |0.700s
+xxxxxxxxxx|Heu 4, Adj Off  |68.20%  |1965.52        |278.876s    |0.083s      |0.700s
+
+0.8
+xxxxxxxxxx|Brute Force     |54.20%  |0.77           |515.434s    |0.275s      |0.800s
+xxxxxxxxxx|Heu 1, Off 0    |73.80%  |33.20          |800.649s    |0.801s      |0.801s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.10%   |21.99          |788.870s    |0.269s      |0.800s
+xxxxxxxxxx|Heu 2, A, Off 0 |29.30%  |24.97          |644.968s    |0.271s      |0.800s
+xxxxxxxxxx|Heu 3, Off 0    |78.40%  |3.22           |240.137s    |0.086s      |0.800s
+xxxxxxxxxx|Heu 3, Adj Off  |64.00%  |1967.25        |334.547s    |0.073s      |0.800s
+xxxxxxxxxx|Heu 4, Off 0    |79.80%  |2.93           |228.095s    |0.083s      |0.800s
+xxxxxxxxxx|Heu 4, Adj Off  |69.10%  |1849.26        |290.461s    |0.063s      |0.800s
+
+0.9
+xxxxxxxxxx|Brute Force     |63.80%  |0.48           |508.722s    |0.287s      |0.900s
+xxxxxxxxxx|Heu 1, Off 0    |81.30%  |14.96          |900.545s    |0.901s      |0.901s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.00%   |21.32          |886.833s    |0.241s      |0.900s
+xxxxxxxxxx|Heu 2, A, Off 0 |25.00%  |24.23          |743.956s    |0.276s      |0.900s
+xxxxxxxxxx|Heu 3, Off 0    |77.20%  |3.24           |272.179s    |0.087s      |0.900s
+xxxxxxxxxx|Heu 3, Adj Off  |64.50%  |1893.49        |369.876s    |0.078s      |0.900s
+xxxxxxxxxx|Heu 4, Off 0    |79.50%  |2.98           |259.164s    |0.094s      |0.900s
+xxxxxxxxxx|Heu 4, Adj Off  |70.40%  |1738.76        |318.926s    |0.075s      |0.900s
+
+1.0
+xxxxxxxxxx|Brute Force     |66.80%  |0.47           |544.488s    |0.318s      |1.000s
+xxxxxxxxxx|Heu 1, Off 0    |81.50%  |22.77          |1000.560s   |1.001s      |1.001s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.90%   |21.02          |985.955s    |0.260s      |1.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |30.30%  |19.17          |797.869s    |0.333s      |1.000s
+xxxxxxxxxx|Heu 3, Off 0    |79.10%  |3.09           |288.969s    |0.101s      |1.000s
+xxxxxxxxxx|Heu 3, Adj Off  |65.80%  |1746.04        |394.914s    |0.080s      |1.000s
+xxxxxxxxxx|Heu 4, Off 0    |79.90%  |3.13           |281.361s    |0.101s      |1.000s
+xxxxxxxxxx|Heu 4, Adj Off  |69.90%  |1840.23        |351.053s    |0.072s      |1.000s
+
+2.0
+xxxxxxxxxx|Brute Force     |81.00%  |0.20           |84.824s     |0.578s      |2.000s
+xxxxxxxxxx|Heu 1, Off 0    |97.00%  |0.09           |200.054s    |2.001s      |2.001s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.00%   |20.07          |198.707s    |0.706s      |2.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |39.00%  |31.63          |145.201s    |0.595s      |2.000s
+xxxxxxxxxx|Heu 3, Off 0    |83.00%  |3.48           |46.812s     |0.154s      |2.000s
+xxxxxxxxxx|Heu 3, Adj Off  |72.00%  |1451.31        |62.826s     |0.095s      |2.000s
+xxxxxxxxxx|Heu 4, Off 0    |83.00%  |3.45           |44.449s     |0.126s      |2.000s
+xxxxxxxxxx|Heu 4, Adj Off  |74.00%  |1471.86        |57.374s     |0.073s      |2.000s
+
+3.0
+xxxxxxxxxx|Brute Force     |89.00%  |0.12           |96.184s     |0.710s      |3.000s
+xxxxxxxxxx|Heu 1, Off 0    |98.00%  |0.09           |300.051s    |3.001s      |3.001s
+xxxxxxxxxx|Heu 2, M, Off 0 |2.00%   |19.63          |294.592s    |0.295s      |3.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |48.00%  |30.52          |202.705s    |0.973s      |3.000s
+xxxxxxxxxx|Heu 3, Off 0    |83.00%  |3.42           |60.733s     |0.117s      |3.000s
+xxxxxxxxxx|Heu 3, Adj Off  |71.00%  |1376.44        |95.437s     |0.119s      |3.000s
+xxxxxxxxxx|Heu 4, Off 0    |82.00%  |3.53           |65.768s     |0.143s      |3.000s
+xxxxxxxxxx|Heu 4, Adj Off  |75.00%  |1419.47        |83.235s     |0.110s      |3.000s
+
+5.0
+xxxxxxxxxx|Brute Force     |98.00%  |0.02           |95.406s     |0.871s      |5.000s
+xxxxxxxxxx|Heu 1, Off 0    |98.00%  |0.12           |500.056s    |5.001s      |5.001s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.00%   |20.05          |495.577s    |0.576s      |5.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |50.00%  |34.17          |291.257s    |0.825s      |5.000s
+xxxxxxxxxx|Heu 3, Off 0    |83.00%  |3.46           |101.175s    |0.195s      |5.000s
+xxxxxxxxxx|Heu 3, Adj Off  |78.00%  |1094.25        |135.600s    |0.328s      |5.000s
+xxxxxxxxxx|Heu 4, Off 0    |82.00%  |3.44           |100.221s    |0.125s      |5.000s
+xxxxxxxxxx|Heu 4, Adj Off  |76.00%  |1151.65        |128.341s    |0.110s      |5.000s
+
+10.0
+xxxxxxxxxx|Brute Force     |100.00% |0.00           |146.498s    |1.465s      |0s
+xxxxxxxxxx|Heu 1, Off 0    |100.00% |0.00           |1000.065s   |10.001s     |0s
+xxxxxxxxxx|Heu 2, M, Off 0 |1.00%   |20.00          |990.264s    |0.262s      |10.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |46.00%  |28.01          |586.232s    |1.005s      |10.000s
+xxxxxxxxxx|Heu 3, Off 0    |82.00%  |3.48           |205.232s    |0.308s      |10.000s
+xxxxxxxxxx|Heu 3, Adj Off  |79.00%  |911.63         |244.478s    |0.436s      |10.000s
+xxxxxxxxxx|Heu 4, Off 0    |83.00%  |3.46           |181.677s    |0.141s      |10.000s
+xxxxxxxxxx|Heu 4, Adj Off  |79.00%  |911.16         |241.040s    |0.393s      |10.000s

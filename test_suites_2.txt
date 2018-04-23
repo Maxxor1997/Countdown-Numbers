@@ -3476,3 +3476,22 @@ xxxxxxxxxx|Heu 3, Adj Off  |34.00%  |47533.43       |710.424s    |1.483s      |1
 xxxxxxxxxx|Heu 4, Off 0    |57.00%  |57.43          |457.075s    |0.474s      |10.002s
 xxxxxxxxxx|Heu 4, Adj Off  |50.00%  |46544.64       |529.646s    |0.593s      |10.000s
 
+n = 10
+k = 25
+Timeout = 100s
+Max Target is 390625
+Number of trials: 10
+
+ Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved
+--------------------------------------------------------------------------------------------
+xxxxxxxxxx|Brute Force     |70.00%  |0.30           |667.429s    |52.490s     |100.000s
+xxxxxxxxxx|Heu 1, Off 0    |60.00%  |47.10          |1000.006s   |100.001s    |100.001s
+xxxxxxxxxx|Heu 2, M, Off 0 |0.00%   |154.50         |1000.000s   |0s          |100.000s
+xxxxxxxxxx|Heu 2, A, Off 0 |0.00%   |37368.70       |1000.000s   |0s          |100.000s
+xxxxxxxxxx|Heu 3, Off 0    |50.00%  |109.10         |513.127s    |2.625s      |100.000s
+xxxxxxxxxx|Heu 3, Adj Off  |30.00%  |30585.10       |703.172s    |1.057s      |100.000s
+xxxxxxxxxx|Heu 4, Off 0    |40.00%  |93.80          |601.501s    |0.375s      |100.000s
+xxxxxxxxxx|Heu 4, Adj Off  |50.00%  |29795.40       |502.245s    |0.449s      |100.000s
+
+
+

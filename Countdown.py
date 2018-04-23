@@ -57,16 +57,16 @@ def use_Analysis(n, k):
 
 def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_numbers, run_base):
 
-    print("n = " + str(n))
-    print("k = " + str(k))
-    print("Timeout = " + str(t) + "s")
-    print("Max Target is " + str(max_target))
-    print("Number of trials: " + str(trials))
-    print("")
+    #print("n = " + str(n))
+    #print("k = " + str(k))
+    #print("Timeout = " + str(t) + "s")
+    print(str(max_target))
+    #print("Number of trials: " + str(trials))
+    #print("")
 
     #15, 8, 15, 12, 11, 14
-    print(" Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved")
-    print("--------------------------------------------------------------------------------------------")
+    #print(" Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved")
+    #print("--------------------------------------------------------------------------------------------")
 
     if (run_base):
         tester.base_trials(trials, test_cases, target_numbers, debug)
@@ -96,36 +96,16 @@ if __name__ == "__main__":
     t = 5
     max_target_3 = k**3
     max_target_4 = k**4
-    trials = 1000
+    trials = 500
     debug = False
 
     tester = Tester(n, k)
     test_cases = tester.gen_test_nums(n, k, trials)
-    for test in test_cases:
-        print(test)
     target_numbers_3 = tester.gen_target_nums(max_target_3, trials)
-    print("t3: ")
-    for t3 in target_numbers_3:
-        print(t3)
+
     target_numbers_4 = tester.gen_target_nums(max_target_4, trials)
-    print("t4: ")
-    for t4 in target_numbers_4:
-        print(t4)
+    #test_suite(tester, n, k, 10, max_target_3, trials, False, test_cases, target_numbers_3, False)
+    test_suite(tester, n, k, 100, max_target_4, 50, False, test_cases, target_numbers_4, False)
 
-    timeouts = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-
-    for time in timeouts:
-        test_suite(tester, n, k, time, max_target_3, trials, debug, test_cases, target_numbers_3, False)
-    
-    for time in timeouts:
-        test_suite(tester, n, k, time, max_target_4, trials, debug, test_cases, target_numbers_4, False)
-
-    timeouts = [2, 3, 5, 10]
-    trials = 100
-    for time in timeouts:
-        test_suite(tester, n, k, time, max_target_3, trials, debug, test_cases, target_numbers_3, False)
-    
-    for time in timeouts:
-        test_suite(tester, n, k, time, max_target_4, trials, debug, test_cases, target_numbers_4, False)
 
 
