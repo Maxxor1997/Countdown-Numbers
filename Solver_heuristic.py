@@ -7,13 +7,13 @@ class Solver_heuristic:
 		self.n = n
 		self.nums = nums
 		self.target = target
-		self.timeout = timeout
-		self.time_ratio = time_ratio
 		self.first_half = first_half
-		self.start = time.clock()
 		self.debug = debug
 		self.hashes = dict()
 		self.searched = set()
+		self.max = time.clock() + timeout
+		self.timeout = timeout
+		self.start = time.clock()
 
 		#initialize dict structure
 		self.most_likely = set()

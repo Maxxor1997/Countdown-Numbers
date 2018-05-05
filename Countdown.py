@@ -72,7 +72,7 @@ def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_nu
         tester.base_trials(trials, test_cases, target_numbers, debug)
         print("")
 
-    
+    tester.recursive_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
     tester.heuristic_trials(trials, t, test_cases, 0, target_numbers, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, True, debug)
@@ -83,29 +83,25 @@ def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_nu
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
 
+def test_suite_rec(tester, n, k, t, max_target, trials, debug, test_cases, target_numbers):
+    tester.recursive_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
+    tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
+
 if __name__ == "__main__":
-    # targets1 = use_DFS_hash()
-    # targets2 = use_DFS_marked()
-    # if len(targets1) != len(targets2):
-    # 	print ("discrepancy")
-    # for i in range (0, len(targets1)):
-    # 	if targets1[i] != targets2[i]:
-    # 		print ("discrepancy" + str(targets1[i]))
-    n = 10
+
+    n = 20
     k = 25
-    t = 5
-    max_target_3 = k**3
-    max_target_4 = k**4
-    trials = 500
+    timeout = 40
+    max_target_4 = k**6
+    trials = 25
     debug = False
 
     tester = Tester(n, k)
     test_cases = tester.gen_test_nums(n, k, trials)
-    target_numbers_3 = tester.gen_target_nums(max_target_3, trials)
 
     target_numbers_4 = tester.gen_target_nums(max_target_4, trials)
-    #test_suite(tester, n, k, 10, max_target_3, trials, False, test_cases, target_numbers_3, False)
-    test_suite(tester, n, k, 100, max_target_4, 50, False, test_cases, target_numbers_4, False)
-
+    #`test_suite(tester, n, k, 10, max_target_3, trials, False, test_cases, target_numbers_3, False)
+    test_suite_rec(tester, n, k, timeout, max_target_4, trials, debug, test_cases, target_numbers_4)
+    test_suite_rec(tester, n, k, 80, max_target_4, 15, debug, test_cases, target_numbers_4)
 
 

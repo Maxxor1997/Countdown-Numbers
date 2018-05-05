@@ -11,7 +11,7 @@ from math import log
 
 def sort_and_remove(file, trials, timeout):
 	groups = ["Brute Force", "Heuristic 1", "Heuristic 2","Heuristic 3","Heuristic 4","Heuristic 4, adj","Heuristic 5","Heuristic 5, adj"]
-	colors = ["black", "red", "green", "blue", "brown", "yellow", "purple", "orange"]
+	colors = ["black", "red", "green", "blue", "brown", "magenta", "purple", "orange"]
 	data = list()
 	f = open(file,'r')
 	f.readline()
@@ -39,7 +39,7 @@ def sort_and_remove(file, trials, timeout):
 		ys = list(zip(*dat))[1]
 		ax.scatter(xs, ys, alpha=0.8, c=colors[i], edgecolors='none', s=30, label=groups[i])
 
-	plt.title('Time vs Number of Instances Solved, max target = k^4')
+	plt.title('Time vs Number of Instances Solved, max target = k^3')
 	handles, labels = ax.get_legend_handles_labels()
 	ax.legend(handles, labels)
 	plt.xlabel("Instances Solved")
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     # for i in range (0, len(targets1)):
     # 	if targets1[i] != targets2[i]:
     # 		print ("discrepancy" + str(targets1[i]))
-    sort_and_remove("test_suites_4.txt", 50, 100)
+    sort_and_remove("test_suites_3.txt", 500, 10)
