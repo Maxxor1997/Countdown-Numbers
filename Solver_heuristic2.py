@@ -130,7 +130,9 @@ class Solver_heuristic2:
 		solution = ""
 
 		for i in range(int(self.target**(1/2)), int(self.target)):
-				
+			if time.clock() > self.max:
+				print("time exceeded")
+				return(nearest, solution)
 			if self.target%i==0 or i == self.target-1:
 
 				if i==self.target-1:
@@ -233,6 +235,7 @@ class Solver_heuristic2:
 			for i in range(int(self.target**(1/2)), self.target):
 
 				if time.clock() >= self.max:
+						print("time exceeded")
 						return(nearest, solution)
 					
 				if self.target%i==0 or i == self.target-1:

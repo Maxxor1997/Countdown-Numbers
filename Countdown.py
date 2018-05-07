@@ -72,9 +72,7 @@ def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_nu
         tester.base_trials(trials, test_cases, target_numbers, debug)
         print("")
 
-    tester.recursive_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
     tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
-    tester.heuristic_trials(trials, t, test_cases, 0, target_numbers, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, True, debug)
     tester.heuristic2_trials(trials, t, test_cases, 0, target_numbers, False, debug)
     tester.heuristic3_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
@@ -83,25 +81,52 @@ def test_suite(tester, n, k, t, max_target, trials, debug, test_cases, target_nu
     tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
     print("")
 
+def test_suite2(tester, n, k, t, max_target, trials, debug, test_cases, target_numbers, run_base):
+
+    #print("n = " + str(n))
+    #print("k = " + str(k))
+    #print("Timeout = " + str(t) + "s")
+    print(str(max_target))
+    #print("Number of trials: " + str(trials))
+    #print("")
+
+    #15, 8, 15, 12, 11, 14
+    #print(" Progress | Algorithm Used | Solved | Average Error | Total Time | Avg Solved | Avg Unsolved")
+    #print("--------------------------------------------------------------------------------------------")
+
+    if (run_base):
+        tester.base_trials(trials, test_cases, target_numbers, debug)
+        print("")
+
+    tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
+    tester.heuristic4_trials(trials, t, test_cases, 0, target_numbers, True, True, debug)
+    print("")
+
 def test_suite_rec(tester, n, k, t, max_target, trials, debug, test_cases, target_numbers):
-    tester.recursive_trials(trials, t, test_cases, 0, target_numbers, True, False, debug)
-    tester.brute_force_trials(trials, t, test_cases, target_numbers, debug)
+    tester.recursive_trials2(trials, t, test_cases, 0, target_numbers, True, False, debug)
 
 if __name__ == "__main__":
 
-    n = 20
+    
     k = 25
-    timeout = 40
-    max_target_4 = k**6
-    trials = 25
+    timeout = 80
+    trials = 10
     debug = False
 
+    max_target_4 = k**8
+    n=30
     tester = Tester(n, k)
     test_cases = tester.gen_test_nums(n, k, trials)
-
     target_numbers_4 = tester.gen_target_nums(max_target_4, trials)
-    #`test_suite(tester, n, k, 10, max_target_3, trials, False, test_cases, target_numbers_3, False)
-    test_suite_rec(tester, n, k, timeout, max_target_4, trials, debug, test_cases, target_numbers_4)
-    test_suite_rec(tester, n, k, 80, max_target_4, 15, debug, test_cases, target_numbers_4)
+    test_suite2(tester, n, k, timeout, max_target_4, trials, debug, test_cases, target_numbers_4, False)
+
+    max_target_4 = k**10
+    n=40
+    tester = Tester(n, k)
+    test_cases = tester.gen_test_nums(n, k, trials)
+    target_numbers_4 = tester.gen_target_nums(max_target_4, trials)
+    test_suite(tester, n, k, timeout, max_target_4, trials, debug, test_cases, target_numbers_4, False)
+
+
 
 

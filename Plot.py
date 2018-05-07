@@ -22,6 +22,7 @@ def sort_and_remove(file, trials, timeout):
 		num1 = list()
 		for i in range(trials):
 			text = f.readline()
+			print(text)
 			num1.append(float(text))
 			num1 = sorted(num1)
 		x = 0
@@ -57,4 +58,4 @@ if __name__ == "__main__":
     # for i in range (0, len(targets1)):
     # 	if targets1[i] != targets2[i]:
     # 		print ("discrepancy" + str(targets1[i]))
-    sort_and_remove("test_suites_3.txt", 500, 10)
+    sort_and_remove("test_suites_4.txt", 50, 100)

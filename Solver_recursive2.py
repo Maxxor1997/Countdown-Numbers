@@ -2,7 +2,7 @@ from Solver_heuristic2 import Solver_heuristic2
 import random
 import time
 
-class Solver_recursive:
+class Solver_recursive2:
 
 	def __init__(self, n, first_half, k, target, nums, timeout, num_searches, multiply, debug):
 		self.k=k
@@ -29,93 +29,79 @@ class Solver_recursive:
 		nearest = 0
 		solution = ""
 
-		for i in range(int(self.target**(1/2)), self.target):
+		first_target = int(self.target**(1/2))
+		second_target = first_target+1
+
+		while time.clock() < self.max:
+			random.shuffle(self.nums) 
+
+			first_half = self.nums[:self.first_half]
+			second_half = self.nums[self.first_half:]
+
+			#search first half
+			self.closest = 0
+			self.solution = ""
+			self.curr_target = first_target
+			self.pre_process_2(first_half)
+
 			if time.clock() >= self.max:
-					print("timeout exceeded")
-					return(nearest, solution)
-			if self.target%i==0 or i == self.target-1:
-				if i==self.target-1:
-					first_target = int(self.target**(1/2))
-					second_target = first_target+1
-				else:
-					first_target = i
-					second_target = self.target / i
+				return(nearest, solution)
 
-				if adjust_offset:
-					for j in range(self.n):
-						if self.target**(j/self.n) < i:
-							self.first_half = j
+			if self.debug:
+				print("timeout " + str(time.clock() + self.timeout))
+				print("curr time " + str(time.clock()))
+				print("")
 
-				while time.clock() < self.max:
-					random.shuffle(self.nums) 
+			solver = Solver_heuristic2(len(first_half), int(len(first_half)/2), self.k, first_target, first_half, self.timeout/10, 1, True, False)
+			(nearest_first, solution_first) = solver.heuristic_search_2()
+			if time.clock() >= self.max:
+				return(nearest, solution)
 
-					first_half = self.nums[:self.first_half]
-					second_half = self.nums[self.first_half:]
+			#search second half
+			self.closest = 0
+			self.solution = ""
+			self.curr_target = second_target
+			self.pre_process_2(second_half)
 
-					#search first half
-					self.closest = 0
-					self.solution = ""
-					self.curr_target = first_target
-					self.pre_process_2(first_half)
+			if time.clock() >= self.max:
+				return(nearest, solution)
 
-					if time.clock() >= self.max:
-						return(nearest, solution)
+			if self.debug:
+				print("timeout " + str(time.clock() + self.timeout))
+				print("curr time " + str(time.clock()))
+				print("")
+			self.recursion(second_half, "", time.clock() + self.timeout)
+			solver2 = Solver_heuristic2(len(second_half), int(len(second_half)/2), self.k, second_target, second_half, self.timeout/10, 1, True, False)
+			(nearest_second, solution_second) = solver2.heuristic_search_2()
 
-					if self.debug:
-						print("timeout " + str(time.clock() + self.timeout))
-						print("curr time " + str(time.clock()))
-						print("")
+			if time.clock() >= self.max:
+				return(nearest, solution)
 
-					solver = Solver_heuristic2(len(first_half), int(len(first_half)/2), self.k, first_target, first_half, self.timeout/10, 1, True, False)
-					(nearest_first, solution_first) = solver.heuristic_search_4(False)
-					if time.clock() >= self.max:
-						return(nearest, solution)
+			#combine and update
+			if self.multiply:
+				nearest_total = nearest_first * nearest_second
+				solution_total = solution_first + " * " + solution_second
 
-					#search second half
-					self.closest = 0
-					self.solution = ""
-					self.curr_target = second_target
-					self.pre_process_2(second_half)
+			else:
+				nearest_total = nearest_first + nearest_second
+				solution_total = solution_first + " + " + solution_second
 
-					if time.clock() >= self.max:
-						return(nearest, solution)
+			if time.clock() >= self.max:
+				return(nearest, solution)
 
-					if self.debug:
-						print("timeout " + str(time.clock() + self.timeout))
-						print("curr time " + str(time.clock()))
-						print("")
-					self.recursion(second_half, "", time.clock() + self.timeout)
-					solver2 = Solver_heuristic2(len(second_half), int(len(second_half)/2), self.k, second_target, second_half, self.timeout/10, 1, True, False)
-					(nearest_second, solution_second) = solver2.heuristic_search_4(False)
-
-					if time.clock() >= self.max:
-						return(nearest, solution)
-
-					#combine and update
-					if self.multiply:
-						nearest_total = nearest_first * nearest_second
-						solution_total = solution_first + " * " + solution_second
-
-					else:
-						nearest_total = nearest_first + nearest_second
-						solution_total = solution_first + " + " + solution_second
-
-					if time.clock() >= self.max:
-						return(nearest, solution)
-
-					if self.debug:
-						print("First half goal: " + str(first_target))
-						print("nearest: " + str(nearest_first))
-						print("solution: " + solution_first)
-						print("Second half goal: " + str(second_target))
-						print("nearest: " + str(nearest_second))
-						print("solution: " + solution_second)
-						print("")
-					if abs(nearest_total - self.target) < abs(nearest - self.target):
-						nearest = nearest_total
-						solution = solution_total
-					if nearest == self.target:
-						return(nearest, solution)
+			if self.debug:
+				print("First half goal: " + str(first_target))
+				print("nearest: " + str(nearest_first))
+				print("solution: " + solution_first)
+				print("Second half goal: " + str(second_target))
+				print("nearest: " + str(nearest_second))
+				print("solution: " + solution_second)
+				print("")
+			if abs(nearest_total - self.target) < abs(nearest - self.target):
+				nearest = nearest_total
+				solution = solution_total
+			if nearest == self.target:
+				return(nearest, solution)
 
 		return(nearest, solution)
 

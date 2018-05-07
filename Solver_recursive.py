@@ -30,11 +30,9 @@ class Solver_recursive:
 		solution = ""
 
 		for i in range(int(self.target**(1/2)), self.target):
-			if time.clock() >= self.max:
-					print("timeout exceeded")
-					return(nearest, solution)
-			if self.target%i==0 or i == self.target-1:
-				if i==self.target-1:
+
+			if self.target%i==0 or i == self.target-1 or time.clock() >= self.max - self.timeout/2:
+				if i==self.target-1 or time.clock() >= self.max - self.timeout/2:
 					first_target = int(self.target**(1/2))
 					second_target = first_target+1
 				else:
